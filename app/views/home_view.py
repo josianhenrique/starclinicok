@@ -10,7 +10,7 @@ rota	descrição
 from app import app
 from flask import render_template,request,redirect,url_for
 from app.forms  import recepcionista_form
-from app.models import recepcionista_model
+from app.models import recepcionista
 
 @app.route('/recepcionista')
 def login():
@@ -18,7 +18,7 @@ def login():
       if form.validate_on_submit():
        nome = form.nome.data
        email = form.email.data #capturando o conteúdo validado
-       user = recepcionista_model.Recepcionista(nome=nome,email=email)
+       user = recepcionista.Recepcionista(nome=nome,email=email)
        if request.method == 'POST':
            return redirect(url_for('uncompetencias/uc_template.html"'))
 

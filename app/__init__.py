@@ -46,10 +46,15 @@ from .views import especialidade_view
 
 #NOTE: StarClinic
 from .views import home_view
-from .models import recepcionista_model
-from .models.starc import log
-from .models.starc import especialidade
-from .models.starc import medico
+from .models import recepcionista
+from .models import log
+from .models import especialidade
+from .models import medico 
+from .models  import consulta
+from .models  import prontuario_paciente
+from .models  import paciente
+
+
 
 
 
