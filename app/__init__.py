@@ -20,33 +20,25 @@ babel = Babel(app)
 
 #determinar o que vai ter no projeto
 #FIXME:model
-from .models import uc_model
-from .models import curso_model
-from .models import area_model
-from .models import competencia_model
-from .models import logusuario_model
-from .models import tipo_model
+
 
 
 #NOTE: Alpha InfoSystems
 #FIXME:model
-from .models.alpha import nivel_model
-from .models.alpha import tecnico_model
 
-#FIXME:view
-from .views import nivel_view
-from .views import tecnico_view
 
 #FIXME:view
 
-from .views import curso_view
-from .views import area_view
-from .views import tipo_view
+
+#FIXME:view
+
 from .views import especialidade_view
 from .views import planosaude_view
+from .views import recepcionista_view
+from .views import medico_view
 
 #NOTE: StarClinic
-from .views import home_view
+
 from .models import recepcionista
 from .models import log
 from .models import especialidade

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Recepcionista</title>
+</head>
+<body>
+    <h1>Cadastrar Recepcionista</h1>
+    <form method="POST" action="{{ url_for('cadastrar_recepcionista') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.nome.label }}<br>
+            {{ form.nome(size=32) }}<br>
+            {% for error in form.nome.errors %}
+                <span style="color: red;">[{{ error }}]</span><br>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}<br>
+            {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span><br>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.telefone.label }}<br>
+            {{ form.telefone(size=32) }}<br>
+            {% for error in form.telefone.errors %}
+                <span style="color: red;">[{{ error }}]</span><br>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.senha.label }}<br>
+            {{ form.senha(size=32) }}<br>
+            {% for error in form.senha.errors %}
+                <span style="color: red;">[{{ error }}]</span><br>
+            {% endfor %}
+        </p>
+        <p><input type="submit" value="Cadastrar"></p>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>
