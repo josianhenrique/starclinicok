@@ -43,6 +43,7 @@ from .views import curso_view
 from .views import area_view
 from .views import tipo_view
 from .views import especialidade_view
+from .views import planosaude_view
 
 #NOTE: StarClinic
 from .views import home_view
@@ -52,7 +53,8 @@ from .models import especialidade
 from .models import medico 
 from .models  import consulta
 from .models  import prontuario_paciente
-from .models  import paciente
+from .models  import planosaude_model
+
 
 
 

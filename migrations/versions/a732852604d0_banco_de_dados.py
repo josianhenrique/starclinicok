@@ -1,8 +1,8 @@
-"""1para1
+"""banco de dados
 
-Revision ID: 1500a96b7db6
+Revision ID: a732852604d0
 Revises: 
-Create Date: 2024-06-05 20:49:24.552318
+Create Date: 2024-06-14 19:55:09.581339
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '1500a96b7db6'
+revision = 'a732852604d0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,14 +35,13 @@ def upgrade():
     )
     op.create_table('especialidade',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('nome', sa.String(length=100), nullable=True),
+    sa.Column('nome', sa.String(length=80), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('log',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('hora', sa.Time(), nullable=True),
-    sa.Column('data_log', sa.Date(), nullable=True),
-    sa.Column('hash_log', mysql.NCHAR(national=True, length=32), nullable=True),
+    sa.Column('hora', sa.DateTime(), nullable=True),
+    sa.Column('hash_log', mysql.NCHAR(national=True, length=50), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('log_usuario',
@@ -58,20 +57,22 @@ def upgrade():
     sa.Column('nome', sa.String(length=200), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('paciente',
+    op.create_table('plano_de_saude',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('nome', sa.String(length=100), nullable=False),
-    sa.Column('cpf', sa.String(length=11), nullable=False),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('cpf')
+    sa.Column('nome', sa.String(length=50), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('prontuario_paciente',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('historico', sa.String(length=80), nullable=False),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('recepcionista',
-    sa.Column('nome', sa.String(length=100), nullable=True),
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('telefone', sa.Integer(), nullable=True),
-    sa.Column('email', sa.String(length=80), nullable=True),
-    sa.Column('cpf', sa.String(length=11), nullable=True),
-    sa.Column('senha', sa.String(length=20), nullable=True),
+    sa.Column('telefone', sa.String(length=20), nullable=True),
+    sa.Column('email', sa.String(length=50), nullable=True),
+    sa.Column('senha', sa.String(length=10), nullable=True),
+    sa.Column('nome', sa.String(length=80), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('tipo',
@@ -89,20 +90,13 @@ def upgrade():
     )
     op.create_table('medico',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('nome', sa.String(length=100), nullable=True),
-    sa.Column('telefone', sa.Integer(), nullable=True),
-    sa.Column('senha', sa.String(length=20), nullable=True),
-    sa.Column('cpf', sa.String(length=11), nullable=True),
-    sa.Column('crm', sa.Integer(), nullable=True),
+    sa.Column('nome', sa.String(length=80), nullable=True),
+    sa.Column('telefone', sa.String(length=12), nullable=True),
+    sa.Column('codigo_acesso', sa.Integer(), nullable=True),
+    sa.Column('cpf', sa.String(length=12), nullable=True),
+    sa.Column('crm', sa.String(length=60), nullable=True),
     sa.Column('fk_especialidade_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['fk_especialidade_id'], ['especialidade.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_table('prontuario_paciente',
-    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('historico', sa.String(length=200), nullable=False),
-    sa.Column('paciente_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['paciente_id'], ['paciente.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('tecnico',
@@ -114,16 +108,15 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('consulta',
-    sa.Column('horario', sa.Time(), nullable=True),
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('valor', sa.Float(), nullable=True),
     sa.Column('data', sa.DateTime(), nullable=False),
-    sa.Column('idConsulta', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('horario', sa.Time(), nullable=True),
     sa.Column('fk_recepcionista_id', sa.Integer(), nullable=True),
     sa.Column('fk_medico_id', sa.Integer(), nullable=True),
-    sa.Column('fk_paciente_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['fk_medico_id'], ['medico.id'], ),
-    sa.ForeignKeyConstraint(['fk_paciente_id'], ['paciente.id'], ),
     sa.ForeignKeyConstraint(['fk_recepcionista_id'], ['recepcionista.id'], ),
-    sa.PrimaryKeyConstraint('idConsulta')
+    sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 
@@ -132,12 +125,12 @@ def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
     op.drop_table('consulta')
     op.drop_table('tecnico')
-    op.drop_table('prontuario_paciente')
     op.drop_table('medico')
     op.drop_table('unidadecompetencia')
     op.drop_table('tipo')
     op.drop_table('recepcionista')
-    op.drop_table('paciente')
+    op.drop_table('prontuario_paciente')
+    op.drop_table('plano_de_saude')
     op.drop_table('nivel')
     op.drop_table('log_usuario')
     op.drop_table('log')
