@@ -6,7 +6,7 @@
 <form method="post">
     {{ form.csrf_token }}
     <div class="form-group">
-        <label for="nome">Nome</label>
+        <label for="nome"> Nome Completo </label>
         {{ form.nome(class="form-control", id="nome") }}
     </div>
     <button type="submit" class="btn btn-primary">{{ 'Editar' if editar else 'Cadastrar' }}</button>
