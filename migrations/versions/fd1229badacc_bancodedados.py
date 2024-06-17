@@ -1,8 +1,8 @@
-"""banco2
+"""bancodedados
 
-Revision ID: 155a2cfe4ad4
+Revision ID: fd1229badacc
 Revises: 
-Create Date: 2024-06-15 17:41:06.729252
+Create Date: 2024-06-16 21:21:23.583624
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '155a2cfe4ad4'
+revision = 'fd1229badacc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,7 +38,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('historico', sa.String(length=80), nullable=False),
     sa.Column('nome', sa.String(length=80), nullable=True),
-    sa.Column('whatsapp', sa.String(length=10), nullable=True),
+    sa.Column('whatsapp', sa.String(length=15), nullable=True),
     sa.Column('email', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )

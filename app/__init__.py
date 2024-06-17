@@ -18,24 +18,11 @@ csrf.init_app(app)
 
 babel = Babel(app)
 
-#determinar o que vai ter no projeto
-#FIXME:model
-
-
-
-#NOTE: Alpha InfoSystems
-#FIXME:model
-
-
-#FIXME:view
-
-
-#FIXME:view
-
 from .views import especialidade_view
 from .views import planosaude_view
 from .views import recepcionista_view
 from .views import medico_view
+from .views import prontuariopaciente_view
 
 #NOTE: StarClinic
 
@@ -44,7 +31,7 @@ from .models import log
 from .models import especialidade
 from .models import medico 
 from .models  import consulta
-from .models  import prontuario_paciente
+from .models  import prontuariopaciente
 from .models  import planosaude_model
 
 

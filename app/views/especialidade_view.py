@@ -1,19 +1,23 @@
 from app import app
-from flask import render_template
+from flask import render_template, redirect, url_for, flash
 from app.forms import especialidade_form
 from app.models import especialidade
 from app import db
-@app.route("/cadespecial",methods=["POST","GET"])
+
+@app.route("/cadespecial", methods=["POST", "GET"])
 def cadastrar_especialidade():
-      form = especialidade_form.EspecialidadeForm()
-      if form.validate_on_submit():
-       nome = form.nome.data #capturando o conteúdo validado
-       especial = especialidade.Especialidade(nome=nome)   
-       try:
-          #adicionar na sessão de conexão com o banco de dados
-          db.session.add(especial)
-        #salvar
-          db.session.commit()
-       except:
-         print("especialidade não cadastrado")
-      return render_template("especialidade/form.html",form=form)
+    form = especialidade_form.EspecialidadeForm()
+    if form.validate_on_submit():
+        nome = form.nome.data
+        especial = especialidade.Especialidade(nome=nome)
+        try:
+            db.session.add(especial)
+            db.session.commit()
+            flash("Especialidade cadastrada com sucesso!", "success")
+            return redirect(url_for('cadastrar_especialidade'))
+        except Exception as e:
+            print("Erro ao cadastrar especialidade:", e)
+            db.session.rollback()
+            flash("Erro ao cadastrar especialidade. Por favor, tente novamente mais tarde.", "error")
+
+    return render_template("especialidade/especialidade.html", form=form)

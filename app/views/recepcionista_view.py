@@ -25,4 +25,4 @@ def cadastrar_recepcionista():
             db.session.rollback()
             flash("Erro ao cadastrar recepcionista: " + str(e), "danger")
     
-    return render_template("recepcionista/form.html", form=form)
+    return render_template("recepcionista/recepcionista.html", form=form)

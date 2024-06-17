@@ -4,7 +4,7 @@ class ProntuarioPaciente(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     historico = db.Column(db.String(80), nullable=False)
     nome  = db.Column(db.String(80))
-    whatsapp = db.Column(db.String(10))
+    whatsapp = db.Column(db.String(15))
     email = db. Column(db.String(50))
     #consultas = db.relationship('Consulta', back_populates='prontuario_paciente')
     
