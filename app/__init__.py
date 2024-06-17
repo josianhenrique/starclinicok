@@ -23,6 +23,8 @@ from .views import planosaude_view
 from .views import recepcionista_view
 from .views import medico_view
 from .views import prontuariopaciente_view
+from .views import consulta_view
+from .views import log_view
 
 #NOTE: StarClinic
 

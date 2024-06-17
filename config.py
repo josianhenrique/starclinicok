@@ -10,7 +10,7 @@ SERVER = 'localhost'
 #create database ....
 # SQLAlchemy
 
-DB = 'str'
+DB = 'starclinic'
 #connection string
 SQLALCHEMY_DATABASE_URI=f'mysql://{USERNAME}:{PASSWORD}@{SERVER}/{DB}'
 #modificação

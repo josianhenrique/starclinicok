@@ -1,8 +1,8 @@
-"""bancodedados
+"""bancostarclinic
 
-Revision ID: fd1229badacc
+Revision ID: 45692bf5a095
 Revises: 
-Create Date: 2024-06-16 21:21:23.583624
+Create Date: 2024-06-17 15:00:53.423604
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'fd1229badacc'
+revision = '45692bf5a095'
 down_revision = None
 branch_labels = None
 depends_on = None
