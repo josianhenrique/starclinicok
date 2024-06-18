@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastrar Log</title>
+  <title>{{ 'Editar Log' if editar else 'Cadastrar Log' }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
   <style>
     .col-md-6 {
@@ -19,8 +19,8 @@
   </header>
   <div class="container">
     <div class="col-md-6">
-      <h1 class="text-center">Cadastrar Log</h1>
-      <form method="POST" action="{{ url_for('cadastrar_log') }}">
+      <h1 class="text-center">{{ 'Editar Log' if editar else 'Cadastrar Log' }}</h1>
+      <form method="POST" action="{% if editar %}{{ url_for('editar_log', id=log_editar.id) }}{% else %}{{ url_for('cadastrar_log') }}{% endif %}">
         {{ form.hidden_tag() }}
         <div class="mb-3">
           <label for="hora" class="form-label">{{ form.hora.label }}</label>
@@ -36,7 +36,7 @@
             <div class="text-danger">{{ error }}</div>
           {% endfor %}
         </div>
-        <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+        <button type="submit" class="btn btn-primary w-100">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
       </form>
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}

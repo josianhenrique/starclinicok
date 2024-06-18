@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Prontuários de Pacientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <div class="container mt-5">       
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Histórico</th>
+                    <th>Whatsapp</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prontuario in prontuarios %}
+                    <tr>
+                        <td>{{ prontuario.id }}</td>
+                        <td><a href="{{ url_for('ver_um_prontuario', id=prontuario.id) }}">{{ prontuario.historico }}</a></td>
+                        <td>{{ prontuario.whatsapp }}</td>
+                        <td>{{ prontuario.nome }}</td>
+                        <td>{{ prontuario.email }}</td>
+                        <td><a href="{{ url_for('editar_prontuario', id=prontuario.id) }}">Alterar</a></td>
+                        <td><a href="{{ url_for('remover_prontuario', id=prontuario.id) }}">Remover</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('cadastrar_prontuario') }}"> <button type="button" class="btn btn-primary">Cadastrar</button></a>       
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

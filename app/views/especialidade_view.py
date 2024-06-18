@@ -1,8 +1,7 @@
-from app import app
+from app import app, db
 from flask import render_template, redirect, url_for, flash
 from app.forms import especialidade_form
 from app.models import especialidade
-from app import db
 
 @app.route("/cadespecial", methods=["POST", "GET"])
 def cadastrar_especialidade():
@@ -29,5 +28,38 @@ def ver_especialidades():
 
 @app.route("/verumaespecial/<int:id>")
 def ver_uma_especial(id):
-    especial = especialidade.Especialidade.query.filter_by(id=id).first()  # Consulta todos os registros na tabela Nivel
-    return render_template("especialidade/verumaespecialidade.html",especial=especial)
+    especial = especialidade.Especialidade.query.filter_by(id=id).first()
+    return render_template("especialidade/verumaespecialidade.html", especial=especial)
+
+@app.route("/editarespecialidade/<int:id>", methods=["GET", "POST"])
+def editar_especialidade(id):
+    especialidade_editar = especialidade.Especialidade.query.get_or_404(id)
+    form = especialidade_form.EspecialidadeForm(obj=especialidade_editar)
+
+    if form.validate_on_submit():
+        especialidade_editar.nome = form.nome.data
+        try:
+            db.session.commit()
+            flash("Especialidade atualizada com sucesso!", "success")
+            return redirect(url_for('ver_especialidades'))
+        except Exception as e:
+            print("Erro ao atualizar especialidade:", e)
+            db.session.rollback()
+            flash("Erro ao atualizar especialidade. Por favor, tente novamente mais tarde.", "error")
+
+    return render_template("especialidade/especialidade.html", form=form, editar=True)
+
+@app.route("/removerespecialidade/<int:id>", methods=["GET", "POST"])
+def remover_especialidade(id):
+    especialidade_remover = especialidade.Especialidade.query.get_or_404(id)
+
+    try:
+        db.session.delete(especialidade_remover)
+        db.session.commit()
+        flash("Especialidade removida com sucesso!", "success")
+    except Exception as e:
+        print("Erro ao remover especialidade:", e)
+        db.session.rollback()
+        flash("Erro ao remover especialidade. Por favor, tente novamente mais tarde.", "error")
+
+    return redirect(url_for('ver_especialidades'))
