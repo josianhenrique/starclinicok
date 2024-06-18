@@ -14,10 +14,15 @@ def cadastrar_especialidade():
             db.session.add(especial)
             db.session.commit()
             flash("Especialidade cadastrada com sucesso!", "success")
-            return redirect(url_for('cadastrar_especialidade'))
+            return redirect(url_for('ver_especialidades'))
         except Exception as e:
             print("Erro ao cadastrar especialidade:", e)
             db.session.rollback()
             flash("Erro ao cadastrar especialidade. Por favor, tente novamente mais tarde.", "error")
 
     return render_template("especialidade/especialidade.html", form=form)
+
+@app.route("/verespecialidades")
+def ver_especialidades():
+    especialidades = especialidade.Especialidade.query.all()
+    return render_template("especialidade/verespecialidades.html", especialidades=especialidades)
