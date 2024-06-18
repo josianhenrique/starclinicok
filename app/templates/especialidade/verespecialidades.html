@@ -22,7 +22,7 @@
                 {% for especialidade in especialidades %}
                     <tr>
                         <td>{{ especialidade.id }}</td>
-                        <td><a href="#">{{ especialidade.nome }}</a></td>
+                        <td><a href="{{url_for('ver_uma_especial',id=especialidade.id)}}">{{ especialidade.nome }}</a></td>
                         <td><a href="#">alterar</a></td>
                         <td><a href="#">remover</a></td>
                     </tr>

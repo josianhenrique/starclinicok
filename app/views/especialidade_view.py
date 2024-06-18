@@ -26,3 +26,8 @@ def cadastrar_especialidade():
 def ver_especialidades():
     especialidades = especialidade.Especialidade.query.all()
     return render_template("especialidade/verespecialidades.html", especialidades=especialidades)
+
+@app.route("/verumaespecial/<int:id>")
+def ver_uma_especial(id):
+    especial = especialidade.Especialidade.query.filter_by(id=id).first()  # Consulta todos os registros na tabela Nivel
+    return render_template("especialidade/verumaespecialidade.html",especial=especial)
