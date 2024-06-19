@@ -1,0 +1,27 @@
+<!-- templates/consulta/verumaconsulta.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta</title>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+           Dados da Consulta
+        </div>
+        <div class="card-body">
+           <h4 class="card-title">ID: {{ consulta.id }} </h4>
+           <h5>Valor: {{ consulta.valor }}</h5>
+           <h5>Data: {{ consulta.data }}</h5>
+           <h5>Horário: {{ consulta.horario }}</h5>
+           <h5>Recepcionista ID: {{ consulta.fk_recepcionista_id }}</h5>
+           <h5>Médico ID: {{ consulta.fk_medico_id }}</h5>
+           <h5>Prontuário Paciente: {{ consulta.fk_prontuario_paciente }}</h5>
+           <h5>Plano de Saúde ID: {{ consulta.fk_plano_de_saude_id }}</h5>
+        </div>
+    </div>
+</body>
+</html>

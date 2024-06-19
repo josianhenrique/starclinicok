@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Consulta</title>
+    <title>Cadastro de Consulta</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <style>
         body, html {
@@ -16,81 +16,106 @@
             justify-content: center;
             height: 100%;
         }
+        .form-wrapper {
+            width: 100%;
+            max-width: 600px;
+        }
+        .form-group {
+            margin-bottom: 0;
+        }
+        .form-control {
+            width: 100%;
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .titulo-cadastro {
+            margin-bottom: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+
     <header class="bg-primary text-white text-center py-4 mb-5">
         <div class="container">
             <h1 class="display-4">StarClinic</h1>
         </div>
     </header>
+
     <div class="container">
-        <div class="col-md-6">
-            <h1 class="text-center">Cadastrar Consulta</h1>
+        <div class="form-wrapper">
+            <h1 class="titulo-cadastro">Cadastro de Consulta</h1>
             <form method="POST" action="{{ url_for('cadastrar_consulta') }}">
-                {{ form.hidden_tag() }}
+                {{ form.csrf_token }}
                 <div class="mb-3">
-                    <label for="valor" class="form-label">{{ form.valor.label }}</label>
+                    <label for="valor" class="form-label">Valor</label>
                     {{ form.valor(class="form-control", id="valor") }}
                     {% for error in form.valor.errors %}
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="data" class="form-label">{{ form.data.label }}</label>
+                    <label for="data" class="form-label">Data</label>
                     {{ form.data(class="form-control", id="data") }}
                     {% for error in form.data.errors %}
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="horario" class="form-label">{{ form.horario.label }}</label>
+                    <label for="horario" class="form-label">Horário</label>
                     {{ form.horario(class="form-control", id="horario") }}
                     {% for error in form.horario.errors %}
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="fk_recepcionista_id" class="form-label">{{ form.fk_recepcionista_id.label }}</label>
+                    <label for="fk_recepcionista_id" class="form-label">Recepcionista ID</label>
                     {{ form.fk_recepcionista_id(class="form-control", id="fk_recepcionista_id") }}
                     {% for error in form.fk_recepcionista_id.errors %}
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="fk_medico_id" class="form-label">{{ form.fk_medico_id.label }}</label>
+                    <label for="fk_medico_id" class="form-label">Médico ID</label>
                     {{ form.fk_medico_id(class="form-control", id="fk_medico_id") }}
                     {% for error in form.fk_medico_id.errors %}
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="fk_prontuario_paciente" class="form-label">{{ form.fk_prontuario_paciente.label }}</label>
+                    <label for="fk_prontuario_paciente" class="form-label">Prontuário Paciente</label>
                     {{ form.fk_prontuario_paciente(class="form-control", id="fk_prontuario_paciente") }}
                     {% for error in form.fk_prontuario_paciente.errors %}
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="fk_plano_de_saude_id" class="form-label">{{ form.fk_plano_de_saude_id.label }}</label>
+                    <label for="fk_plano_de_saude_id" class="form-label">Plano de Saúde ID</label>
                     {{ form.fk_plano_de_saude_id(class="form-control", id="fk_plano_de_saude_id") }}
                     {% for error in form.fk_plano_de_saude_id.errors %}
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
-            </form>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-              {% if messages %}
-                <div class="mt-3">
-                    {% for category, message in messages %}
-                      <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
-                    {% endfor %}
+                <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-primary">{{ 'Editar' if editar else 'Cadastrar' }}</button>
                 </div>
-              {% endif %}
-            {% endwith %}
+            </form>
+            <div class="text-center">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="mt-3">
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
         </div>
     </div>
+
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
