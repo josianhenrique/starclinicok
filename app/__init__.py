@@ -34,7 +34,7 @@ from .models import log
 from .models import especialidade
 from .models import medico 
 from .models  import consulta
-from .models  import prontuariopaciente
+from .models  import prontuariopaciente_model
 from .models  import planosaude_model
 
 

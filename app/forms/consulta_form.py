@@ -8,5 +8,5 @@ class ConsultaForm(FlaskForm):
     horario = TimeField("Horário", format='%H:%M:%S', validators=[DataRequired()])
     fk_recepcionista_id = IntegerField("Recepcionista ID", validators=[DataRequired()])
     fk_medico_id = IntegerField("Médico ID", validators=[DataRequired()])
-    fk_prontuario_paciente = IntegerField("Prontuário Paciente ID", validators=[DataRequired()])
+    fk_prontuario_paciente = IntegerField("ProntuarioPaciente.ID", validators=[DataRequired()])
     fk_plano_de_saude_id = IntegerField("Plano de Saúde ID", validators=[DataRequired()])

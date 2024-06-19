@@ -1,8 +1,8 @@
-"""banco de dados
+"""bancodedados
 
-Revision ID: f556c84157d8
+Revision ID: 55b0324699c5
 Revises: 
-Create Date: 2024-06-18 09:07:10.485345
+Create Date: 2024-06-18 20:45:06.948919
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'f556c84157d8'
+revision = '55b0324699c5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,7 +31,7 @@ def upgrade():
     )
     op.create_table('plano_de_saude',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('nome', sa.String(length=55), nullable=True),
+    sa.Column('nome', sa.String(length=55), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('prontuario_paciente',

@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash
 from app import app, db
 from app.forms.prontuariopaciente_form import ProntuarioPacienteForm
-from app.models.prontuariopaciente import ProntuarioPaciente
+from app.models.prontuariopaciente_model import ProntuarioPaciente
 
 @app.route("/cadprontuario", methods=["POST", "GET"])
 def cadastrar_prontuario():

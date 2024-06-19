@@ -3,10 +3,15 @@ from flask import render_template, redirect, url_for, flash
 from app.forms.consulta_form import ConsultaForm
 from app.models.consulta import Consulta
 from app import db
+from app.models import prontuariopaciente_model
+
 
 @app.route("/cadconsulta", methods=["POST", "GET"])
 def cadastrar_consulta():
     form = ConsultaForm()
+    prontuariospacientes = prontuariopaciente_model.ProntuarioPaciente.query.all()
+    prontuario_escolhas = [(prontuariopaciente.id,prontuariopaciente.nome) for prontuariopaciente in prontuariospacientes]
+    form.prontuario_paciente.id.escolhas = prontuario_escolhas
     if form.validate_on_submit():
         valor = form.valor.data
         data = form.data.data
