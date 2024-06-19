@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash
 from app import app, db
 from app.forms.log_form import LogForm
-from app.models.log import Log
+from app.models.log_model import Log
 
 @app.route("/cadlog", methods=["POST", "GET"])
 def cadastrar_log():

@@ -1,14 +1,14 @@
 from app import app, db
 from flask import render_template, redirect, url_for, flash
 from app.forms import especialidade_form
-from app.models import especialidade
+from app.models import especialidade_model
 
 @app.route("/cadespecial", methods=["POST", "GET"])
 def cadastrar_especialidade():
     form = especialidade_form.EspecialidadeForm()
     if form.validate_on_submit():
         nome = form.nome.data
-        especial = especialidade.Especialidade(nome=nome)
+        especial = especialidade_model.Especialidade(nome=nome)
         try:
             db.session.add(especial)
             db.session.commit()
@@ -23,17 +23,17 @@ def cadastrar_especialidade():
 
 @app.route("/verespecialidades")
 def ver_especialidades():
-    especialidades = especialidade.Especialidade.query.all()
+    especialidades = especialidade_model.Especialidade.query.all()
     return render_template("especialidade/verespecialidades.html", especialidades=especialidades)
 
 @app.route("/verumaespecial/<int:id>")
 def ver_uma_especial(id):
-    especial = especialidade.Especialidade.query.filter_by(id=id).first()
+    especial = especialidade_model.Especialidade.query.filter_by(id=id).first()
     return render_template("especialidade/verumaespecialidade.html", especial=especial)
 
 @app.route("/editarespecialidade/<int:id>", methods=["GET", "POST"])
 def editar_especialidade(id):
-    especialidade_editar = especialidade.Especialidade.query.get_or_404(id)
+    especialidade_editar = especialidade_model.Especialidade.query.get_or_404(id)
     form = especialidade_form.EspecialidadeForm(obj=especialidade_editar)
 
     if form.validate_on_submit():
@@ -51,7 +51,7 @@ def editar_especialidade(id):
 
 @app.route("/removerespecialidade/<int:id>", methods=["GET", "POST"])
 def remover_especialidade(id):
-    especialidade_remover = especialidade.Especialidade.query.get_or_404(id)
+    especialidade_remover = especialidade_model.Especialidade.query.get_or_404(id)
 
     try:
         db.session.delete(especialidade_remover)

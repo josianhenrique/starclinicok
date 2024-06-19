@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, redirect, url_for, flash
 from app.forms.medico_form import MedicoForm  
-from app.models.medico import Medico  
+from app.models.medico_model import Medico  
 from app import db
 
 @app.route("/cadmedico", methods=["POST", "GET"])

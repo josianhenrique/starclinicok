@@ -1,10 +1,10 @@
+<!-- templates/consulta/consulta.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Consulta</title>
-    <!-- Inclusão do Bootstrap -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <style>
         body, html {
@@ -65,7 +65,11 @@
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                   <!--prontuarioaqui-->
+                    <label for="fk_prontuario_paciente" class="form-label">{{ form.fk_prontuario_paciente.label }}</label>
+                    {{ form.fk_prontuario_paciente(class="form-control", id="fk_prontuario_paciente") }}
+                    {% for error in form.fk_prontuario_paciente.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
                 </div>
                 <div class="mb-3">
                     <label for="fk_plano_de_saude_id" class="form-label">{{ form.fk_plano_de_saude_id.label }}</label>
@@ -87,7 +91,6 @@
             {% endwith %}
         </div>
     </div>
-    <!-- Inclusão do JavaScript do Bootstrap (opcional) -->
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

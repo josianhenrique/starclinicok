@@ -29,11 +29,11 @@ from .views import login_view
 
 #NOTE: StarClinic
 
-from .models import recepcionista
-from .models import log
-from .models import especialidade
-from .models import medico 
-from .models  import consulta
+from .models import recepcionista_model
+from .models import log_model
+from .models import especialidade_model
+from .models import medico_model 
+from .models  import consulta_model
 from .models  import prontuariopaciente_model
 from .models  import planosaude_model
 

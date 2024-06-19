@@ -2,7 +2,7 @@
 from app import app
 from flask import render_template, redirect, url_for, flash
 from app.forms.recepcionista_form import RecepcionistaForm
-from app.models.recepcionista import Recepcionista
+from app.models.recepcionista_model import Recepcionista
 from app import db
 
 @app.route("/cadrecepcionista", methods=["POST", "GET"])
