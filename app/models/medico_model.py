@@ -4,7 +4,7 @@ class Medico(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(80), nullable=False)
     telefone = db.Column(db.String(12), nullable=False)
-    cpf = db.Column(db.String(12), unique=True, nullable=False)
+    cpf = db.Column(db.String(11), unique=True, nullable=False)
     crm = db.Column(db.String(60), unique=True, nullable=False)
     fk_especialidade_id= db.Column(db.Integer,db.ForeignKey('especialidade.id'))
 

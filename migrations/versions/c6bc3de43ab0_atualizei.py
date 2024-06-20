@@ -1,8 +1,8 @@
-"""bancodedados
+"""atualizei
 
-Revision ID: bf2dd7ebddf1
+Revision ID: c6bc3de43ab0
 Revises: 
-Create Date: 2024-06-20 10:16:14.322260
+Create Date: 2024-06-20 15:06:23.337053
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'bf2dd7ebddf1'
+revision = 'c6bc3de43ab0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,12 +31,12 @@ def upgrade():
     )
     op.create_table('plano_de_saude',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('nome', sa.String(length=55), nullable=False),
+    sa.Column('nome', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('prontuario_paciente',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('historico', sa.String(length=80), nullable=False),
+    sa.Column('historico', sa.String(length=200), nullable=False),
     sa.Column('nome', sa.String(length=80), nullable=True),
     sa.Column('whatsapp', sa.String(length=15), nullable=True),
     sa.Column('email', sa.String(length=50), nullable=True),
@@ -55,7 +55,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nome', sa.String(length=80), nullable=False),
     sa.Column('telefone', sa.String(length=12), nullable=False),
-    sa.Column('cpf', sa.String(length=12), nullable=False),
+    sa.Column('cpf', sa.String(length=11), nullable=False),
     sa.Column('crm', sa.String(length=60), nullable=False),
     sa.Column('fk_especialidade_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['fk_especialidade_id'], ['especialidade.id'], ),
