@@ -1,8 +1,8 @@
-"""bancodedados
+"""a
 
-Revision ID: eda003dddfa2
+Revision ID: 6ada39226267
 Revises: 
-Create Date: 2024-06-19 09:10:31.098824
+Create Date: 2024-06-19 20:48:36.029248
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'eda003dddfa2'
+revision = '6ada39226267'
 down_revision = None
 branch_labels = None
 depends_on = None

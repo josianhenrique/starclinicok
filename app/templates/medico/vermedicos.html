@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Médicos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4 mb-5">
+        <div class="container">
+            <h1 class="display-4">StarClinic</h1>
+        </div>
+    </header>
+    <div class="container mt-5">
+        <h1 class="text-center">Lista de Médicos</h1>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>CPF</th>
+                    <th>CRM</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medico in medicos %}
+                    <tr>
+                        <td>{{ medico.id }}</td>
+                        <td><a href="{{ url_for('ver_um_medico', id=medico.id) }}">{{ medico.nome }}</a></td>
+                        <td>{{ medico.telefone }}</td>
+                        <td>{{ medico.cpf }}</td>
+                        <td>{{ medico.crm }}</td>
+                        <td><a href="{{ url_for('editar_medico', id=medico.id) }}">Alterar</a></td>
+                        <td><a href="{{ url_for('remover_medico', id=medico.id) }}">Remover</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('cadastrar_medico') }}"><button type="button" class="btn btn-primary">Cadastrar</button></a>
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

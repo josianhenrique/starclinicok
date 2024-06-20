@@ -3,9 +3,10 @@ from wtforms import StringField
 from wtforms.validators import DataRequired
 
 class MedicoForm(FlaskForm):
-    nome = StringField("nome", validators=[DataRequired()])
-    telefone = StringField("telefone", validators=[DataRequired()])
-    cpf = StringField("cpf", validators=[DataRequired()])
-    crm = StringField("crm", validators=[DataRequired()])
+    nome = StringField("Nome", validators=[DataRequired()])
+    telefone = StringField("Telefone", validators=[DataRequired()])
+    cpf = StringField("CPF", validators=[DataRequired()])
+    crm = StringField("CRM", validators=[DataRequired()])
+
 
 

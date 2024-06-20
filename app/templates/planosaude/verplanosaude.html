@@ -1,23 +1,27 @@
-<!-- templates/planosaude/cadastrar_plano.html -->
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Plano de Saúde</title>
+    <title>Visualizar Plano de Saúde</title>
     <!-- Inclusão do Bootstrap -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 </head>
 <body>
-
     <header class="bg-primary text-white text-center py-4 mb-5">
         <div class="container">
             <h1 class="display-4">StarClinic</h1>
         </div>
     </header>
-
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h1 class="text-center mb-4">Cadastrar Plano de Sa
+                <h1 class="text-center mb-4">Plano de Saúde: {{ plano.nome }}</h1>
+                <a href="{{ url_for('listar_planos') }}" class="btn btn-primary">Voltar para a Lista de Planos de Saúde</a>
+            </div>
+        </div>
+    </div>
+    <!-- Inclusão do JavaScript do Bootstrap -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
