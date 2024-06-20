@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar Plano de Saúde</title>
-    <!-- Inclusão do Bootstrap -->
+    <title>Lista de Planos de Saúde</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 </head>
 <body>
@@ -14,14 +13,29 @@
         </div>
     </header>
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <h1 class="text-center mb-4">Plano de Saúde: {{ plano.nome }}</h1>
-                <a href="{{ url_for('listar_planos') }}" class="btn btn-primary">Voltar para a Lista de Planos de Saúde</a>
-            </div>
-        </div>
+        <h1 class="text-center">Lista de Planos de Saúde</h1>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plano in planos %}
+                    <tr>
+                        <td>{{ plano.id }}</td>
+                        <td><a href="{{ url_for('ver_um_plano', id=plano.id) }}">{{ plano.nome }}</a></td>
+                        <td><a href="{{ url_for('editar_plano', id=plano.id) }}">Alterar</a></td>
+                        <td><a href="{{ url_for('remover_plano', id=plano.id) }}">Remover</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('cadastrar_plano') }}"><button type="button" class="btn btn-primary">Cadastrar</button></a>
     </div>
-    <!-- Inclusão do JavaScript do Bootstrap -->
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

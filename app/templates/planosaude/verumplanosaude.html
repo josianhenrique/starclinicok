@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar Plano de Saúde</title>
-    <!-- Inclusão do Bootstrap -->
+    <title>Detalhes do Plano de Saúde</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 </head>
 <body>
@@ -14,14 +13,17 @@
         </div>
     </header>
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <h1 class="text-center mb-4">Plano de Saúde: {{ plano.nome }}</h1>
-                <a href="{{ url_for('listar_planos') }}" class="btn btn-primary">Voltar para a Lista de Planos de Saúde</a>
+        <div class="card">
+            <div class="card-header">
+                Detalhes do Plano de Saúde
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Nome: {{ plano.nome }}</h5>
+                <a href="{{ url_for('editar_plano', id=plano.id) }}" class="btn btn-primary">Editar</a>
+                <a href="{{ url_for('listar_planos') }}" class="btn btn-secondary">Voltar</a>
             </div>
         </div>
     </div>
-    <!-- Inclusão do JavaScript do Bootstrap -->
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
