@@ -1,8 +1,8 @@
-"""atualizaçao
+"""bancodedados
 
-Revision ID: 66d99ba3a9ba
+Revision ID: a683e327c2f4
 Revises: 
-Create Date: 2024-06-20 20:21:14.821620
+Create Date: 2024-06-21 14:47:30.580479
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '66d99ba3a9ba'
+revision = 'a683e327c2f4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -57,8 +57,8 @@ def upgrade():
     sa.Column('telefone', sa.String(length=12), nullable=False),
     sa.Column('cpf', sa.String(length=11), nullable=False),
     sa.Column('crm', sa.String(length=60), nullable=False),
-    sa.Column('fk_especialidade_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['fk_especialidade_id'], ['especialidade.id'], ),
+    sa.Column('especialidade_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['especialidade_id'], ['especialidade.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('cpf'),
     sa.UniqueConstraint('crm')

@@ -8,6 +8,4 @@ class MedicoForm(FlaskForm):
     cpf = StringField("CPF", validators=[DataRequired()])
     crm = StringField("CRM", validators=[DataRequired()])
     especialidade_id = SelectField('Especialidade', coerce=int, validators=[DataRequired()])
-    
-
 

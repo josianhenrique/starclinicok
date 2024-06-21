@@ -8,7 +8,7 @@ from app.models.especialidade_model import Especialidade
 def cadastrar_medico():
     form = MedicoForm()
     especialidades = Especialidade.query.all()
-    especialidade_choices = [(especialidade.id, especialidade.nome)for especialidade in especialidades]
+    especialidade_choices = [(especialidade.id, especialidade.nome) for especialidade in especialidades]
     form.especialidade_id.choices = especialidade_choices
 
     if form.validate_on_submit():
@@ -30,6 +30,7 @@ def cadastrar_medico():
             flash("Erro ao cadastrar médico: " + str(e), "danger")
 
     return render_template('medico/medico.html', form=form)
+
 
 @app.route("/vermedicos")
 def ver_medicos():

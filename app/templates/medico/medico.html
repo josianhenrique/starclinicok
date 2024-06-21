@@ -44,17 +44,15 @@
                 {% for error in form.crm.errors %}
                     <div class="text-danger">{{ error }}</div>
                 {% endfor %}
-            </div>
-            <div class="mb-3">
-            <label for="especialidade" class="form-label">{{ form.especialidade_id.label }}</label>
-            <select id="especialidade_id", name="especialidade_id" class="form-control">
-                {% for id, nome in form.especialidade_id.choices %}
-                    <option value="{{ id }}">{{nome}}</option>
-                {% endfor %}
-
-            </select>
-
-            </div>
+                <div class="mb-3">
+                    <label for="especialidade" class="form-label">{{ form.especialidade_id.label }}</label>
+                    <select id="especialidade_id" name="especialidade_id" class="form-control">
+                        {% for id, nome in form.especialidade_id.choices %}
+                            <option value="{{ id }}">{{ nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
             <button type="submit" class="btn btn-primary w-100">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
         </form>
     </div>
