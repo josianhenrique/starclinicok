@@ -1,28 +1,33 @@
-<!-- templates/consulta/verconsultas.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultas</title>
+    <title>Ver Consultas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 </head>
 <body>
-    <div class="container mt-5">
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
+
+    <header class="bg-primary text-white text-center py-4 mb-5">
+        <div class="container">
+            <h1 class="display-4">StarClinic</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="mb-4">Consultas</h1>
+        <table class="table table-striped">
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>Valor</th>
                     <th>Data</th>
                     <th>Horário</th>
-                    <th>Recepcionista ID</th>
-                    <th>Médico ID</th>
+                    <th>Recepcionista</th>
+                    <th>Médico</th>
                     <th>Prontuário Paciente</th>
-                    <th>Plano de Saúde ID</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
+                    <th>Plano de Saúde</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,14 +41,17 @@
                         <td>{{ consulta.fk_medico_id }}</td>
                         <td>{{ consulta.fk_prontuario_paciente }}</td>
                         <td>{{ consulta.fk_plano_de_saude_id }}</td>
-                        <td><a href="{{ url_for('editar_consulta', id=consulta.id) }}">alterar</a></td>
-                        <td><a href="{{ url_for('remover_consulta', id=consulta.id) }}">remover</a></td>
+                        <td>
+                            <a href="{{ url_for('ver_uma_consulta', id=consulta.id) }}" class="btn btn-info btn-sm">Ver</a>
+                            <a href="{{ url_for('editar_consulta', id=consulta.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{{ url_for('remover_consulta', id=consulta.id) }}" class="btn btn-danger btn-sm">Remover</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{{ url_for('cadastrar_consulta') }}"> <button type="submit" class="btn btn-primary">Cadastrar</button></a>
     </div>
+
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-<!-- templates/consulta/consulta.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,14 +70,14 @@
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="fk_recepcionista_id" class="form-label">Recepcionista ID</label>
+                    <label for="fk_recepcionista_id" class="form-label">Recepcionista</label>
                     {{ form.fk_recepcionista_id(class="form-control", id="fk_recepcionista_id") }}
                     {% for error in form.fk_recepcionista_id.errors %}
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="fk_medico_id" class="form-label">Médico ID</label>
+                    <label for="fk_medico_id" class="form-label">Médico</label>
                     {{ form.fk_medico_id(class="form-control", id="fk_medico_id") }}
                     {% for error in form.fk_medico_id.errors %}
                         <div class="text-danger">{{ error }}</div>
@@ -92,7 +91,7 @@
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="fk_plano_de_saude_id" class="form-label">Plano de Saúde ID</label>
+                    <label for="fk_plano_de_saude_id" class="form-label">Plano de Saúde</label>
                     {{ form.fk_plano_de_saude_id(class="form-control", id="fk_plano_de_saude_id") }}
                     {% for error in form.fk_plano_de_saude_id.errors %}
                         <div class="text-danger">{{ error }}</div>
