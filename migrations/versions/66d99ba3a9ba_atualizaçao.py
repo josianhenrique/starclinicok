@@ -1,8 +1,8 @@
-"""atualizei
+"""atualizaçao
 
-Revision ID: c6bc3de43ab0
+Revision ID: 66d99ba3a9ba
 Revises: 
-Create Date: 2024-06-20 15:06:23.337053
+Create Date: 2024-06-20 20:21:14.821620
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'c6bc3de43ab0'
+revision = '66d99ba3a9ba'
 down_revision = None
 branch_labels = None
 depends_on = None

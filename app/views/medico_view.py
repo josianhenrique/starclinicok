@@ -2,17 +2,23 @@ from flask import render_template, redirect, url_for, flash
 from app import app, db
 from app.forms.medico_form import MedicoForm
 from app.models.medico_model import Medico
+from app.models.especialidade_model import Especialidade
 
 @app.route("/cadmedico", methods=["POST", "GET"])
 def cadastrar_medico():
     form = MedicoForm()
+    especialidades = Especialidade.query.all()
+    especialidade_choices = [(especialidade.id, especialidade.nome)for especialidade in especialidades]
+    form.especialidade_id.choices = especialidade_choices
+
     if form.validate_on_submit():
         nome = form.nome.data
         telefone = form.telefone.data
         cpf = form.cpf.data
         crm = form.crm.data
+        especialidade_id = form.especialidade_id.data
 
-        medico = Medico(nome=nome, telefone=telefone, cpf=cpf, crm=crm)
+        medico = Medico(nome=nome, telefone=telefone, cpf=cpf, crm=crm, especialidade_id=especialidade_id)
 
         try:
             db.session.add(medico)
