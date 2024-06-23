@@ -1,3 +1,4 @@
+# app.py
 from flask import render_template, redirect, url_for, flash
 from app import app, db
 from app.forms.consulta_form import ConsultaForm
@@ -103,11 +104,10 @@ def editar_consulta(id):
         consulta_editar.valor = form.valor.data
         consulta_editar.data = form.data.data
         consulta_editar.horario = form.horario.data
-        consulta_editar.recepcionista_id = form.recepcionista_id.data
-        consulta_editar.medico_id = form.medico_id.data
-        consulta_editar.prontuario_paciente_id = form.prontuario_paciente_id.data
-        consulta_editar.plano_de_saude_id = form.plano_de_saude_id.data
-        form.populate_obj(consulta_editar)
+        consulta_editar.fk_recepcionista_id = form.fk_recepcionista_id.data
+        consulta_editar.fk_medico_id = form.fk_medico_id.data
+        consulta_editar.fk_prontuario_paciente = form.fk_prontuario_paciente.data
+        consulta_editar.fk_plano_de_saude_id = form.fk_plano_de_saude_id.data
 
         try:
             db.session.commit()
@@ -119,3 +119,6 @@ def editar_consulta(id):
             flash("Erro ao atualizar consulta. Por favor, tente novamente mais tarde.", "danger")
 
     return render_template("consulta/consulta.html", form=form, editar=True, consulta_editar=consulta_editar)
+
+if __name__ == '__main__':
+    app.run(debug=True)

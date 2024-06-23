@@ -3,8 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Consultas</title>
+    <title>Consultas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        body, html {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .content-wrapper {
+            width: 100%;
+            max-width: 900px;
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .titulo-lista {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .table .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .table .btn {
+            margin-right: 5px;
+        }
+        .table .btn:last-child {
+            margin-right: 0;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,44 +48,48 @@
     </header>
 
     <div class="container">
-        <h1 class="mb-4">Consultas</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Valor</th>
-                    <th>Data</th>
-                    <th>Horário</th>
-                    <th>Recepcionista</th>
-                    <th>Médico</th>
-                    <th>Prontuário Paciente</th>
-                    <th>Plano de Saúde</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for consulta in consultas %}
+        <div class="content-wrapper">
+            <h1 class="titulo-lista">Consultas</h1>
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th>Horário</th>
+                        <th>Recepcionista</th>
+                        <th>Médico</th>
+                        <th>Prontuário do Paciente</th>
+                        <th>Plano de Saúde</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for consulta in consultas %}
                     <tr>
                         <td>{{ consulta.id }}</td>
                         <td>{{ consulta.valor }}</td>
-                        <td>{{ consulta.data }}</td>
-                        <td>{{ consulta.horario }}</td>
-                        <td>{{ consulta.recepcionista.nome }}</td>  {# Ajuste para exibir o nome do recepcionista #}
-                        <td>{{ consulta.medico.nome }}</td>  {# Ajuste para exibir o nome do médico #}
-                        <td>{{ consulta.prontuario_paciente.nome }}</td>  {# Ajuste para exibir o nome do prontuário do paciente #}
-                        <td>{{ consulta.plano_de_saude.nome }}</td>  {# Ajuste para exibir o nome do plano de saúde #}
+                        <td>{{ consulta.data.strftime('%d/%m/%Y') }}</td>
+                        <td>{{ consulta.horario.strftime('%H:%M') }}</td>
+                        <td>{{ consulta.recepcionista.nome }}</td>
+                        <td>{{ consulta.medico.nome }}</td>
+                        <td>{{ consulta.prontuario_paciente.nome }}</td>
+                        <td>{{ consulta.plano_de_saude.nome }}</td>
                         <td>
-                            <a href="{{ url_for('ver_uma_consulta', id=consulta.id) }}" class="btn btn-info btn-sm">Ver</a>
-                            <a href="{{ url_for('editar_consulta', id=consulta.id) }}" class="btn btn-warning btn-sm">Alterar</a>
-                            <a href="{{ url_for('remover_consulta', id=consulta.id) }}" class="btn btn-danger btn-sm">Remover</a>
+                            <div class="btn-group">
+                                <a href="{{ url_for('ver_uma_consulta', id=consulta.id) }}" class="btn btn-info btn-sm">Ver</a>
+                                <a href="{{ url_for('editar_consulta', id=consulta.id) }}" class="btn btn-warning btn-sm">Alterar</a>
+                                <a href="{{ url_for('remover_consulta', id=consulta.id) }}" class="btn btn-danger btn-sm">Remover</a>
+                            </div>
                         </td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{{ url_for('cadastrar_consulta') }}" class="btn btn-primary">Cadastrar Consulta</a>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ url_for('cadastrar_consulta') }}" class="btn btn-primary">Cadastrar Nova Consulta</a>
+        </div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>

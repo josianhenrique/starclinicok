@@ -1,8 +1,8 @@
-"""banco de dados
+"""bancostarclinic
 
-Revision ID: a2f9e6e3a87b
+Revision ID: 08336883ee58
 Revises: 
-Create Date: 2024-06-22 21:04:43.759668
+Create Date: 2024-06-23 09:20:10.094269
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'a2f9e6e3a87b'
+revision = '08336883ee58'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,7 +36,7 @@ def upgrade():
     )
     op.create_table('prontuario_paciente',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('historico', sa.String(length=200), nullable=False),
+    sa.Column('historico', sa.String(length=800), nullable=False),
     sa.Column('nome', sa.String(length=80), nullable=True),
     sa.Column('whatsapp', sa.String(length=15), nullable=True),
     sa.Column('email', sa.String(length=50), nullable=True),
@@ -46,7 +46,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('telefone', sa.String(length=15), nullable=False),
     sa.Column('email', sa.String(length=50), nullable=False),
-    sa.Column('senha', sa.String(length=10), nullable=False),
+    sa.Column('senha', sa.String(length=20), nullable=False),
     sa.Column('nome', sa.String(length=80), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')

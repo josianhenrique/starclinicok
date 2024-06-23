@@ -84,7 +84,7 @@
                     {% endfor %}
                 </div>
                 <div class="mb-3">
-                    <label for="fk_prontuario_paciente" class="form-label">Prontuário Paciente</label>
+                    <label for="fk_prontuario_paciente" class="form-label">Prontuário do Paciente</label>
                     {{ form.fk_prontuario_paciente(class="form-control", id="fk_prontuario_paciente") }}
                     {% for error in form.fk_prontuario_paciente.errors %}
                         <div class="text-danger">{{ error }}</div>
@@ -97,24 +97,11 @@
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
-                <div class="mb-3 text-center">
-                    <button type="submit" class="btn btn-primary">{{ 'Editar' if editar else 'Cadastrar' }}</button>
-                </div>
+                <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
             </form>
-            <div class="text-center">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        <div class="mt-3">
-                            {% for category, message in messages %}
-                                <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %}
-            </div>
         </div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>

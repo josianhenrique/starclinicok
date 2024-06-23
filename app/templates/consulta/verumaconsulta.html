@@ -3,8 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Consulta</title>
+    <title>Consulta</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        body, html {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .content-wrapper {
+            width: 100%;
+            max-width: 600px;
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .titulo-consulta {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,20 +38,46 @@
     </header>
 
     <div class="container">
-        <h1 class="mb-4">Detalhes da Consulta</h1>
-        <ul class="list-group">
-            <li class="list-group-item"><strong>ID:</strong> {{ consulta.id }}</li>
-            <li class="list-group-item"><strong>Valor:</strong> {{ consulta.valor }}</li>
-            <li class="list-group-item"><strong>Data:</strong> {{ consulta.data }}</li>
-            <li class="list-group-item"><strong>Horário:</strong> {{ consulta.horario }}</li>
-            <li class="list-group-item"><strong>Recepcionista:</strong> {{ consulta.fk_recepcionista_id }}</li>
-            <li class="list-group-item"><strong>Médico:</strong> {{ consulta.fk_medico_id }}</li>
-            <li class="list-group-item"><strong>Prontuário Paciente:</strong> {{ consulta.fk_prontuario_paciente }}</li>
-            <li class="list-group-item"><strong>Plano de Saúde:</strong> {{ consulta.fk_plano_de_saude_id }}</li>
-        </ul>
-        <a href="{{ url_for('ver_consultas') }}" class="btn btn-primary mt-3">Voltar</a>
+        <div class="content-wrapper">
+            <h1 class="titulo-consulta">Consulta {{ consulta.id }}</h1>
+            <table class="table table-bordered">
+                <tr>
+                    <th>ID</th>
+                    <td>{{ consulta.id }}</td>
+                </tr>
+                <tr>
+                    <th>Valor</th>
+                    <td>{{ consulta.valor }}</td>
+                </tr>
+                <tr>
+                    <th>Data</th>
+                    <td>{{ consulta.data.strftime('%d/%m/%Y') }}</td>
+                </tr>
+                <tr>
+                    <th>Horário</th>
+                    <td>{{ consulta.horario.strftime('%H:%M') }}</td>
+                </tr>
+                <tr>
+                    <th>Recepcionista</th>
+                    <td>{{ consulta.recepcionista.nome }}</td>
+                </tr>
+                <tr>
+                    <th>Médico</th>
+                    <td>{{ consulta.medico.nome }}</td>
+                </tr>
+                <tr>
+                    <th>Prontuário do Paciente</th>
+                    <td>{{ consulta.prontuario_paciente.nome }}</td>
+                </tr>
+                <tr>
+                    <th>Plano de Saúde</th>
+                    <td>{{ consulta.plano_de_saude.nome }}</td>
+                </tr>
+            </table>
+            <a href="{{ url_for('ver_consultas') }}" class="btn btn-primary">Voltar</a>
+        </div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>
