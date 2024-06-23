@@ -6,7 +6,7 @@ class Recepcionista(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     telefone = db.Column(db.String(15), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
-    senha = db.Column(db.String(10), nullable=False)
+    senha = db.Column(db.String(20), nullable=False)
     nome = db.Column(db.String(80), nullable=False)
     
     consultas = relationship("Consulta", back_populates="recepcionista")
