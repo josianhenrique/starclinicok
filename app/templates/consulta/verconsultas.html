@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Consultas</title>
+    <title>Lista de Consultas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 </head>
 <body>
@@ -37,21 +37,22 @@
                         <td>{{ consulta.valor }}</td>
                         <td>{{ consulta.data }}</td>
                         <td>{{ consulta.horario }}</td>
-                        <td>{{ consulta.fk_recepcionista_id }}</td>
-                        <td>{{ consulta.fk_medico_id }}</td>
-                        <td>{{ consulta.fk_prontuario_paciente }}</td>
-                        <td>{{ consulta.fk_plano_de_saude_id }}</td>
+                        <td>{{ consulta.recepcionista.nome }}</td>  {# Ajuste para exibir o nome do recepcionista #}
+                        <td>{{ consulta.medico.nome }}</td>  {# Ajuste para exibir o nome do médico #}
+                        <td>{{ consulta.prontuario_paciente.nome }}</td>  {# Ajuste para exibir o nome do prontuário do paciente #}
+                        <td>{{ consulta.plano_de_saude.nome }}</td>  {# Ajuste para exibir o nome do plano de saúde #}
                         <td>
-                        <td><a href="{{ url_for('ver_uma_consulta', id=consulta.id) }}" class="btn btn-info btn-sm">Ver</a></td>
-                        <td><a href="{{ url_for('editar_consulta', id=consulta.id) }}" class="btn btn-warning btn-sm">Editar</a></td>
-                        <td><a href="{{ url_for('remover_consulta', id=consulta.id) }}" class="btn btn-danger btn-sm">Remover</a></td>
+                            <a href="{{ url_for('ver_uma_consulta', id=consulta.id) }}" class="btn btn-info btn-sm">Ver</a>
+                            <a href="{{ url_for('editar_consulta', id=consulta.id) }}" class="btn btn-warning btn-sm">Alterar</a>
+                            <a href="{{ url_for('remover_consulta', id=consulta.id) }}" class="btn btn-danger btn-sm">Remover</a>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="#"> <button type="submit" class="btn btn-primary">Cadastrar</button></a>
+        <a href="{{ url_for('cadastrar_consulta') }}" class="btn btn-primary">Cadastrar Consulta</a>
     </div>
+
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
