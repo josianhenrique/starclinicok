@@ -42,16 +42,16 @@
                         <td>{{ consulta.fk_prontuario_paciente }}</td>
                         <td>{{ consulta.fk_plano_de_saude_id }}</td>
                         <td>
-                            <a href="{{ url_for('ver_uma_consulta', id=consulta.id) }}" class="btn btn-info btn-sm">Ver</a>
-                            <a href="{{ url_for('editar_consulta', id=consulta.id) }}" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="{{ url_for('remover_consulta', id=consulta.id) }}" class="btn btn-danger btn-sm">Remover</a>
+                        <td><a href="{{ url_for('ver_uma_consulta', id=consulta.id) }}" class="btn btn-info btn-sm">Ver</a></td>
+                        <td><a href="{{ url_for('editar_consulta', id=consulta.id) }}" class="btn btn-warning btn-sm">Editar</a></td>
+                        <td><a href="{{ url_for('remover_consulta', id=consulta.id) }}" class="btn btn-danger btn-sm">Remover</a></td>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <a href="#"> <button type="submit" class="btn btn-primary">Cadastrar</button></a>
     </div>
-
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

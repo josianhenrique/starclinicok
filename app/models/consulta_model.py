@@ -12,7 +12,11 @@ class Consulta(db.Model):
     fk_medico_id = db.Column(db.Integer, db.ForeignKey('medico.id'))
     fk_prontuario_paciente = db.Column(db.Integer, db.ForeignKey('prontuario_paciente.id'))
     fk_plano_de_saude_id = db.Column(db.Integer, db.ForeignKey('plano_de_saude.id'))
+    
     plano_de_saude = relationship("PlanoSaude", back_populates="consultas")
+    medico = relationship("Medico", back_populates="consultas")
+    recepcionista = relationship("Recepcionista", back_populates="consultas")
+    prontuario_paciente = relationship("ProntuarioPaciente", back_populates="consultas")
 
     def __repr__(self):
         return f'<Consulta {self.id} - {self.data}>'

@@ -1,4 +1,6 @@
 from app import db
+from sqlalchemy.orm import relationship
+
 
 class ProntuarioPaciente(db.Model):
     __tablename__ = 'prontuario_paciente'
@@ -7,7 +9,9 @@ class ProntuarioPaciente(db.Model):
     nome = db.Column(db.String(80))
     whatsapp = db.Column(db.String(15))
     email = db.Column(db.String(50))
-    consultas = db.relationship('Consulta', backref='prontuario', lazy=True)  # Relação com Consulta
+    
+    consultas = relationship("Consulta", back_populates="prontuario_paciente") 
+    
 
     
     

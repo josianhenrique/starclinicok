@@ -8,16 +8,23 @@ from app.models import prontuariopaciente_model, recepcionista_model, medico_mod
 def cadastrar_consulta():
     form = ConsultaForm()
 
-    # Preencher escolhas dos prontuários de pacientes
+    
     prontuariospacientes = prontuariopaciente_model.ProntuarioPaciente.query.all()
     prontuario_escolhas = [(prontuario.id, prontuario.nome) for prontuario in prontuariospacientes]
     form.fk_prontuario_paciente.choices = prontuario_escolhas
 
-    # Preencher escolhas dos planos de saúde
     planos_saude = planosaude_model.PlanoSaude.query.all()
     plano_escolhas = [(plano.id, plano.nome) for plano in planos_saude]
     form.fk_plano_de_saude_id.choices = plano_escolhas
-
+    
+    medicos = medico_model.Medico.query.all()
+    medico_escolhas = [(medico.id, medico.nome) for medico in medicos]
+    form.fk_medico_id.choices = medico_escolhas
+    
+    recepcionistas = recepcionista_model.Recepcionista.query.all()
+    recepcionista_escolhas = [(recepcionista.id, recepcionista.nome) for recepcionista in recepcionistas]
+    form.fk_recepcionista_id.choices = recepcionista_escolhas
+    
     if form.validate_on_submit():
         valor = form.valor.data
         data = form.data.data
