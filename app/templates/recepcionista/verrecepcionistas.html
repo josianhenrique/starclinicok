@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Recepcionistas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        /* Estilos adicionais para centralizar o formulário */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Para centralizar verticalmente */
+        }
+        .form-container {
+            max-width: 800px; /* Define a largura máxima do formulário */
+            width: 100%; /* Ocupa toda a largura disponível */
+            padding: 20px; /* Espaçamento interno */
+            background-color: #f8f9fa; /* Cor de fundo */
+            border-radius: 10px; /* Arredondamento das bordas */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra leve */
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4 mb-5">
+        <div class="container">
+            <h1 class="display-4">StarClinic</h1>
+        </div>
+    </header>
+    <div class="container mt-5 center-container"> <!-- Container principal centralizado -->
+        <div class="form-container"> <!-- Container do formulário -->
+            <h1 class="text-center mb-4">Lista de Recepcionistas</h1>
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recepcionista in recepcionistas %}
+                        <tr>
+                            <td>{{ recepcionista.id }}</td>
+                            <td>{{ recepcionista.nome }}</td>
+                            <td>{{ recepcionista.email }}</td>
+                            <td>{{ recepcionista.telefone }}</td>
+                            <td>
+                                <a href="{{ url_for('ver_um_recepcionista', id=recepcionista.id) }}" class="btn btn-sm btn-info">Visualizar</a>
+                                <a href="{{ url_for('editar_recepcionista', id=recepcionista.id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                <a href="{{ url_for('remover_recepcionista', id=recepcionista.id) }}" class="btn btn-sm btn-danger">Excluir</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ url_for('cadastrar_recepcionista') }}" class="btn btn-primary">Cadastrar Recepcionista</a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

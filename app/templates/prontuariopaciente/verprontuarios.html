@@ -17,25 +17,27 @@
                     <th>Whatsapp</th>
                     <th>Nome</th>
                     <th>Email</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
+                    <th>Ações</th> <!-- Cabeçalho para as ações -->
                 </tr>
             </thead>
             <tbody>
                 {% for prontuario in prontuarios %}
                     <tr>
                         <td>{{ prontuario.id }}</td>
-                        <td><a href="{{ url_for('ver_um_prontuario', id=prontuario.id) }}">{{ prontuario.historico }}</a></td>
+                        <td>{{ prontuario.historico }}</td>
                         <td>{{ prontuario.whatsapp }}</td>
                         <td>{{ prontuario.nome }}</td>
                         <td>{{ prontuario.email }}</td>
-                        <td><a href="{{ url_for('editar_prontuario', id=prontuario.id) }}">Alterar</a></td>
-                        <td><a href="{{ url_for('remover_prontuario', id=prontuario.id) }}">Remover</a></td>
+                        <td>
+                            <a href="{{ url_for('ver_um_prontuario', id=prontuario.id) }}" class="btn btn-info btn-sm">Ver</a>
+                            <a href="{{ url_for('editar_prontuario', id=prontuario.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{{ url_for('remover_prontuario', id=prontuario.id) }}" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{{ url_for('cadastrar_prontuario') }}"> <button type="button" class="btn btn-primary">Cadastrar</button></a>       
+        <a href="{{ url_for('cadastrar_prontuario') }}" class="btn btn-primary">Cadastrar Prontuário</a>       
     </div>
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>

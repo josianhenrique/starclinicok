@@ -23,25 +23,27 @@
                     <th>Telefone</th>
                     <th>CPF</th>
                     <th>CRM</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 {% for medico in medicos %}
                     <tr>
                         <td>{{ medico.id }}</td>
-                        <td><a href="{{ url_for('ver_um_medico', id=medico.id) }}">{{ medico.nome }}</a></td>
+                        <td>{{ medico.nome }}</td>
                         <td>{{ medico.telefone }}</td>
                         <td>{{ medico.cpf }}</td>
                         <td>{{ medico.crm }}</td>
-                        <td><a href="{{ url_for('editar_medico', id=medico.id) }}">Alterar</a></td>
-                        <td><a href="{{ url_for('remover_medico', id=medico.id) }}">Remover</a></td>
+                        <td>
+                            <a href="{{ url_for('editar_medico', id=medico.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{{ url_for('ver_um_medico', id=medico.id) }}" class="btn btn-info btn-sm">Ver</a>
+                            <a href="{{ url_for('remover_medico', id=medico.id) }}" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{{ url_for('cadastrar_medico') }}"><button type="button" class="btn btn-primary">Cadastrar</button></a>
+        <a href="{{ url_for('cadastrar_medico') }}" class="btn btn-primary">Cadastrar Médico</a>
     </div>
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
