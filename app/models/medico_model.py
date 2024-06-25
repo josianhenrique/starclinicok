@@ -1,18 +1,19 @@
 from app import db
 from sqlalchemy.orm import relationship
+from app.models.especialidade_model import Especialidade
 
 class Medico(db.Model):
+    __tablename__ = 'medico'
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(80), nullable=False)
     telefone = db.Column(db.String(15), nullable=False)
     cpf = db.Column(db.String(14), unique=True, nullable=False)
     crm = db.Column(db.String(60), unique=True, nullable=False)
     especialidade_id = db.Column(db.Integer, db.ForeignKey('especialidade.id'))
-    
+
     especialidade = relationship("Especialidade", back_populates="medicos")
     consultas = relationship('Consulta', back_populates='medico')
-    
-    
+
     def __init__(self, nome, telefone, cpf, crm, especialidade_id):
         self.nome = nome
         self.telefone = telefone

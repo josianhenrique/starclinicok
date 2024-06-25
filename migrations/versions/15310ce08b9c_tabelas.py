@@ -1,8 +1,8 @@
-"""bancostarclinic
+"""tabelas
 
-Revision ID: 08336883ee58
+Revision ID: 15310ce08b9c
 Revises: 
-Create Date: 2024-06-23 09:20:10.094269
+Create Date: 2024-06-25 10:23:19.180672
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '08336883ee58'
+revision = '15310ce08b9c'
 down_revision = None
 branch_labels = None
 depends_on = None
