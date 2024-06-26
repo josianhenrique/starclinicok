@@ -1,29 +1,67 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar Recepcionista</title>
+    <title>Detalhes do Recepcionista</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        body, html {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .content-wrapper {
+            width: 100%;
+            max-width: 600px;
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .titulo-recepcionista {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+
     <header class="bg-primary text-white text-center py-4 mb-5">
         <div class="container">
             <h1 class="display-4">StarClinic</h1>
         </div>
     </header>
-    <div class="container mt-5">
-        <h1 class="text-center">Detalhes da Recepcionista</h1>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Nome: {{ recepcionista.nome }}</h5>
-                <p class="card-text"><strong>Email:</strong> {{ recepcionista.email }}</p>
-                <p class="card-text"><strong>Telefone:</strong> {{ recepcionista.telefone }}</p>
-            </div>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <h1 class="titulo-recepcionista">Detalhes do Recepcionista</h1>
+            <table class="table table-bordered">
+                <tr>
+                    <th>ID</th>
+                    <td>{{ recepcionista.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nome</th>
+                    <td>{{ recepcionista.nome }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ recepcionista.email }}</td>
+                </tr>
+                <tr>
+                    <th>Telefone</th>
+                    <td>{{ recepcionista.telefone }}</td>
+                </tr>
+            </table>
+            <a href="{{ url_for('ver_recepcionistas') }}" class="btn btn-primary">Voltar</a>
         </div>
-        <a href="{{ url_for('ver_recepcionistas') }}" class="btn btn-secondary mt-3">Voltar</a>
     </div>
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>

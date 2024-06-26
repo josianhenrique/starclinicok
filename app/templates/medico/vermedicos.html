@@ -6,6 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Médicos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        body, html {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .content-wrapper {
+            width: 100%;
+            max-width: 900px;
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .titulo-lista {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .table .btn-group {
+            display: flex;
+            justify-content: center;
+        }
+        .table .btn-group .btn {
+            margin: 0 5px;
+            width: 80px;
+        }
+    </style>
 </head>
 <body>
     <header class="bg-primary text-white text-center py-4 mb-5">
@@ -13,21 +44,22 @@
             <h1 class="display-4">StarClinic</h1>
         </div>
     </header>
-    <div class="container mt-5">
-        <h1 class="text-center">Lista de Médicos</h1>
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>CPF</th>
-                    <th>CRM</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for medico in medicos %}
+    <div class="container">
+        <div class="content-wrapper">
+            <h1 class="titulo-lista">Lista de Médicos</h1>
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>CPF</th>
+                        <th>CRM</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for medico in medicos %}
                     <tr>
                         <td>{{ medico.id }}</td>
                         <td>{{ medico.nome }}</td>
@@ -35,15 +67,18 @@
                         <td>{{ medico.cpf }}</td>
                         <td>{{ medico.crm }}</td>
                         <td>
-                            <a href="{{ url_for('editar_medico', id=medico.id) }}" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="{{ url_for('ver_um_medico', id=medico.id) }}" class="btn btn-info btn-sm">Ver</a>
-                            <a href="{{ url_for('remover_medico', id=medico.id) }}" class="btn btn-danger btn-sm">Excluir</a>
+                            <div class="btn-group">
+                                <a href="{{ url_for('ver_um_medico', id=medico.id) }}" class="btn btn-info btn-sm">Ver</a>
+                                <a href="{{ url_for('editar_medico', id=medico.id) }}" class="btn btn-warning btn-sm">Alterar</a>
+                                <a href="{{ url_for('remover_medico', id=medico.id) }}" class="btn btn-danger btn-sm">Excluir</a>
+                            </div>
                         </td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{{ url_for('cadastrar_medico') }}" class="btn btn-primary">Cadastrar Médico</a>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ url_for('cadastrar_medico') }}" class="btn btn-primary">Cadastrar Médico</a>
+        </div>
     </div>
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
