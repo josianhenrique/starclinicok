@@ -1,8 +1,8 @@
 """vitoria
 
-Revision ID: cac2d7f261f1
+Revision ID: 8c673243e45e
 Revises: 
-Create Date: 2024-06-25 15:43:15.515715
+Create Date: 2024-06-25 20:09:19.363947
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'cac2d7f261f1'
+revision = '8c673243e45e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,10 +44,10 @@ def upgrade():
     )
     op.create_table('recepcionista',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('telefone', sa.String(length=15), nullable=False),
-    sa.Column('email', sa.String(length=50), nullable=False),
-    sa.Column('senha', sa.String(length=20), nullable=False),
     sa.Column('nome', sa.String(length=80), nullable=False),
+    sa.Column('email', sa.String(length=50), nullable=False),
+    sa.Column('telefone', sa.String(length=15), nullable=False),
+    sa.Column('senha', sa.String(length=20), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )

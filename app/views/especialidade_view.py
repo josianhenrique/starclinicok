@@ -31,23 +31,18 @@ def ver_uma_especial(id):
     especial = especialidade_model.Especialidade.query.filter_by(id=id).first()
     return render_template("especialidade/verumaespecialidade.html", especial=especial)
 
-@app.route("/editarespecialidade/<int:id>", methods=["GET", "POST"])
+@app.route('/editarespecialidade/<int:id>', methods=['GET', 'POST'])
 def editar_especialidade(id):
-    especialidade_editar = especialidade_model.Especialidade.query.get_or_404(id)
-    form = especialidade_form.EspecialidadeForm(obj=especialidade_editar)
+    especial = especialidade_model.Especialidade.query.get_or_404(id)
+    form = especialidade_form.EspecialidadeForm(obj=especial)
 
     if form.validate_on_submit():
-        especialidade_editar.nome = form.nome.data
-        try:
-            db.session.commit()
-            flash("Especialidade atualizada com sucesso!", "success")
-            return redirect(url_for('ver_especialidades'))
-        except Exception as e:
-            print("Erro ao atualizar especialidade:", e)
-            db.session.rollback()
-            flash("Erro ao atualizar especialidade. Por favor, tente novamente mais tarde.", "error")
+        form.populate_obj(especial)
+        db.session.commit()
+        flash('Especialidade atualizada com sucesso', 'success')
+        return redirect(url_for('ver_especialidades'))
 
-    return render_template("especialidade/especialidade.html", form=form, editar=True)
+    return render_template("especialidade/especialidade.html", form=form, editar=True, especialidade=especial)
 
 @app.route("/removerespecialidade/<int:id>", methods=["GET", "POST"])
 def remover_especialidade(id):

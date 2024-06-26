@@ -1,36 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ver Especialidades</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 </head>
 <body>
-    <div class="container mt-5">       
+    <header class="bg-primary text-white text-center py-4 mb-5">
+        <div class="container">
+            <h1 class="display-4">StarClinic</h1>
+        </div>
+    </header>
+    <div class="container mt-5">
+        <h1 class="text-center">Lista de Especialidades</h1>
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 {% for especialidade in especialidades %}
                     <tr>
                         <td>{{ especialidade.id }}</td>
-                        <td><a href="{{url_for('ver_uma_especial',id=especialidade.id)}}">{{ especialidade.nome }}</a></td>
-                        <td><a href="{{ url_for('editar_especialidade', id=especialidade.id) }}">alterar</a></td>
-                        <td><a href="{{ url_for('remover_especialidade', id=especialidade.id) }}">remover</a></td>
-
+                        <td>{{ especialidade.nome }}</td>
+                        <td>{{ especialidade.descricao }}</td>
+                        <td>
+                            <a href="{{ url_for('ver_uma_especial', id=especialidade.id) }}" class="btn btn-info btn-sm">Ver</a>
+                            <a href="{{ url_for('editar_especialidade', id=especialidade.id) }}" class="btn btn-warning btn-sm">Alterar</a>
+                            <a href="{{ url_for('remover_especialidade', id=especialidade.id) }}" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="#"> <button type="submit" class="btn btn-primary">Cadastrar</button></a>       
+        <a href="{{ url_for('cadastrar_especialidade') }}" class="btn btn-primary">Cadastrar Especialidade</a>
     </div>
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>

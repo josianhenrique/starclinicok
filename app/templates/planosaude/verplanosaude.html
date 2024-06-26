@@ -29,8 +29,8 @@
                         <td>{{ plano.id }}</td>
                         <td>{{ plano.nome }}</td>
                         <td class="btn-group">
-                            <a href="{{ url_for('editar_plano', id=plano.id) }}" class="btn btn-warning btn-sm">Editar</a>
                             <a href="{{ url_for('ver_um_plano', id=plano.id) }}" class="btn btn-info btn-sm">Ver</a>
+                            <a href="{{ url_for('editar_plano', id=plano.id) }}" class="btn btn-warning btn-sm">Editar</a>
                             <a href="{{ url_for('remover_plano', id=plano.id) }}" class="btn btn-danger btn-sm">Excluir</a>
                         </td>
                     </tr>

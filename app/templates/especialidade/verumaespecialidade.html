@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa de uma especialidade</title>
+    <title>Detalhes da Especialidade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 </head>
 <body>
-
-    <div class="card">
-        <div class="card-header">
-           Dados do Nível
+    <header class="bg-primary text-white text-center py-4 mb-5">
+        <div class="container">
+            <h1 class="display-4">StarClinic</h1>
         </div>
-   
-        <div class="card-body">
-           <h4 class="card-title"> id: {{ especial.id}} </h4>
-           <h5> nome: {{ especial.nome }}</h5>
+    </header>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Detalhes da Especialidade
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">ID: {{ especial.id }}</h5>
+                <p class="card-text"><strong>Nome:</strong> {{ especial.nome }}</p>
+                <!-- Adicione mais campos conforme necessário -->
+                <a href="{{ url_for('ver_especialidades') }}" class="btn btn-primary">Voltar</a>
+            </div>
         </div>
-   
-     </div>
-    
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
