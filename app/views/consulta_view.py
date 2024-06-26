@@ -119,6 +119,3 @@ def editar_consulta(id):
             flash("Erro ao atualizar consulta. Por favor, tente novamente mais tarde.", "danger")
 
     return render_template("consulta/consulta.html", form=form, editar=True, consulta_editar=consulta_editar)
-
-if __name__ == '__main__':
-    app.run(debug=True)

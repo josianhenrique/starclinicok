@@ -21,12 +21,12 @@ def cadastrar_log():
             db.session.rollback()
             flash("Erro ao cadastrar log. Por favor, tente novamente mais tarde.", "error")
     
-    return render_template("log/cadastrar_log.html", form=form)
+    return render_template("log/log.html", form=form)
 
 @app.route("/verlogs")
 def ver_logs():
     logs = Log.query.all()
-    return render_template("log/ver_logs.html", logs=logs)
+    return render_template("log/verlogs.html", logs=logs)
 
 @app.route("/verumlog/<int:id>")
 def ver_um_log(id):
@@ -50,7 +50,7 @@ def editar_log(id):
             db.session.rollback()
             flash("Erro ao atualizar log. Por favor, tente novamente mais tarde.", "error")
 
-    return render_template("log/cadastrar_log.html", form=form, editar=True)
+    return render_template("log/log.html", form=form, editar=True)
 
 @app.route("/removerlog/<int:id>", methods=["GET", "POST"])
 def remover_log(id):
