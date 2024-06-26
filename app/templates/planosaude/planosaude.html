@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Plano de Saúde</title>
+    <title>{% if editar %}Editar Plano de Saúde{% else %}Cadastrar Plano de Saúde{% endif %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <style>
         .form-container {
@@ -49,9 +49,9 @@
 </header>
 <div class="container">
     <div class="col-md-8">
-        <h1 class="titulo-cadastro">Cadastrar Plano de Saúde</h1>
+        <h1 class="titulo-cadastro">{% if editar %}Editar Plano de Saúde{% else %}Cadastrar Plano de Saúde{% endif %}</h1>
         <div class="form-container">
-            <form method="POST" action="{{ url_for('cadastrar_plano') }}">
+            <form method="POST" action="{% if editar %}{{ url_for('editar_plano', id=plano_editar.id) }}{% else %}{{ url_for('cadastrar_plano') }}{% endif %}">
                 {{ form.hidden_tag() }}
                 <div class="mb-3">
                     <label for="nome" class="form-label">{{ form.nome.label }}</label>
@@ -60,7 +60,7 @@
                         <div class="text-danger">{{ error }}</div>
                     {% endfor %}
                 </div>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
             </form>
         </div>
     </div>

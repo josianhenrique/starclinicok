@@ -38,12 +38,13 @@ def editar_plano(id):
 
     if form.validate_on_submit():
         plano_editar.nome = form.nome.data
-        
+
         try:
             db.session.commit()
             flash("Plano de Saúde atualizado com sucesso!", "success")
             return redirect(url_for('listar_planos'))
         except Exception as e:
+            print("Erro ao atualizar plano de saúde:", e)
             db.session.rollback()
             flash("Erro ao atualizar plano de saúde. Por favor, tente novamente mais tarde.", "danger")
 
@@ -58,6 +59,7 @@ def remover_plano(id):
         db.session.commit()
         flash("Plano de Saúde removido com sucesso!", "success")
     except Exception as e:
+        print("Erro ao remover plano de saúde:", e)
         db.session.rollback()
         flash("Erro ao remover plano de saúde. Por favor, tente novamente mais tarde.", "danger")
 
