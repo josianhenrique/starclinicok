@@ -1,46 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ver Logs</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Logs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        .form-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ced4da;
+            margin: auto;
+        }
+        .display-4 {
+            font-weight: 500;
+        }
+        .col-md-8 {
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-  <header class="bg-primary text-white text-center py-4 mb-5">
+    <header class="bg-primary text-white text-center py-4 mb-5">
+        <div class="container">
+            <h1 class="display-4">StarClinic</h1>
+        </div>
+    </header>
     <div class="container">
-      <h1 class="display-4">StarClinic</h1>
+        <div class="form-container">
+            <div class="col-md-8">
+                <h1 class="text-center">Logs Cadastrados</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Hash Log</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for log in logs %}
+                        <tr>
+                            <th scope="row">{{ log.id }}</th>
+                            <td>{{ log.hora.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ log.hash_log }}</td>
+                            <td>
+                                <a href="{{ url_for('ver_um_log', id=log.id) }}" class="btn btn-info btn-sm">Ver</a>
+                                <a href="{{ url_for('editar_log', id=log.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{{ url_for('remover_log', id=log.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja remover este log?')">Remover</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </header>
-  <div class="container">
-    <div class="col-md-8">
-      <h1 class="text-center">Logs Cadastrados</h1>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Hora</th>
-            <th scope="col">Hash Log</th>
-            <th scope="col">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for log in logs %}
-          <tr>
-            <th scope="row">{{ log.id }}</th>
-            <td>{{ log.hora.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-            <td>{{ log.hash_log }}</td>
-            <td>
-              <a href="{{ url_for('ver_um_log', id=log.id) }}" class="btn btn-info btn-sm">Ver</a>
-              <a href="{{ url_for('editar_log', id=log.id) }}" class="btn btn-warning btn-sm">Editar</a>
-              <a href="{{ url_for('remover_log', id=log.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja remover este log?')">Remover</a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

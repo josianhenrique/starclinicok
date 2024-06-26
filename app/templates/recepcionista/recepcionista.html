@@ -7,21 +7,18 @@
     <title>{% if editar %}Editar Recepcionista{% else %}Cadastrar Recepcionista{% endif %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <style>
-        /* Estilos adicionais para centralizar o formulário */
-        .center-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Para centralizar verticalmente */
-        }
         .form-container {
-            max-width: 600px; /* Define a largura máxima do formulário */
-            width: 100%; /* Ocupa toda a largura disponível */
-            padding: 20px; /* Espaçamento interno */
-            background-color: #f8f9fa; /* Cor de fundo */
-            border-radius: 10px; /* Arredondamento das bordas */
-            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra leve */
-            border: 1px solid #ced4da; /* Borda sólida com cor */
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ced4da;
+            margin: auto;
+        }
+        .display-4 {
+            font-weight: 500;
         }
     </style>
 </head>
@@ -31,50 +28,45 @@
             <h1 class="display-4">StarClinic</h1>
         </div>
     </header>
-    <div class="container mt-5 center-container"> <!-- Container principal centralizado -->
-        <div class="form-container"> <!-- Container do formulário -->
-            <h1 class="text-center mb-4">{% if editar %}Editar Recepcionista{% else %}Cadastrar Recepcionista{% endif %}</h1>
-            <form method="POST" action="{% if editar %}{{ url_for('editar_recepcionista', id=recepcionista.id) }}{% else %}{{ url_for('cadastrar_recepcionista') }}{% endif %}">
-                {{ form.hidden_tag() }}
-                <div class="mb-3">
-                    <label for="nome" class="form-label">{{ form.nome.label }}</label>
-                    {{ form.nome(class="form-control", id="nome") }}
-                    {% for error in form.nome.errors %}
-                        <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="form-container">
+                    <h1 class="text-center">{% if editar %}Editar Recepcionista{% else %}Cadastrar Recepcionista{% endif %}</h1>
+                    <form method="POST" action="{% if editar %}{{ url_for('editar_recepcionista', id=recepcionista.id) }}{% else %}{{ url_for('cadastrar_recepcionista') }}{% endif %}">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">{{ form.nome.label }}</label>
+                            {{ form.nome(class="form-control", id="nome") }}
+                            {% for error in form.nome.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">{{ form.email.label }}</label>
+                            {{ form.email(class="form-control", id="email") }}
+                            {% for error in form.email.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label">{{ form.telefone.label }}</label>
+                            {{ form.telefone(class="form-control", id="telefone") }}
+                            {% for error in form.telefone.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="senha" class="form-label">{{ form.senha.label }}</label>
+                            {{ form.senha(class="form-control", id="senha") }}
+                            {% for error in form.senha.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">{{ form.email.label }}</label>
-                    {{ form.email(class="form-control", id="email") }}
-                    {% for error in form.email.errors %}
-                        <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                <div class="mb-3">
-                    <label for="telefone" class="form-label">{{ form.telefone.label }}</label>
-                    {{ form.telefone(class="form-control", id="telefone") }}
-                    {% for error in form.telefone.errors %}
-                        <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                <div class="mb-3">
-                    <label for="senha" class="form-label">{{ form.senha.label }}</label>
-                    {{ form.senha(class="form-control", id="senha") }}
-                    {% for error in form.senha.errors %}
-                        <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                <button type="submit" class="btn btn-primary w-100">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
-            </form>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-              {% if messages %}
-                <div class="mt-3">
-                    {% for category, message in messages %}
-                      <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
-                    {% endfor %}
-                </div>
-              {% endif %}
-            {% endwith %}
+            </div>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>

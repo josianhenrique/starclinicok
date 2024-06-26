@@ -6,6 +6,20 @@
     <title>Consultas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <style>
+        .content-wrapper {
+            max-width: 900px;
+            width: 100%;
+            padding: 20px;
+            background-color: #f8f9fa; /* Fundo branco para contraste */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave */
+            border: 1px solid #ced4da; /* Borda fina cinza */
+            margin: auto;
+            overflow-x: auto; /* Rola a tabela horizontalmente em telas menores */
+        }
+        .display-4 {
+            font-weight: 500;
+        }
         body, html {
             height: 100%;
         }
@@ -15,17 +29,17 @@
             justify-content: center;
             height: 100%;
         }
-        .content-wrapper {
-            width: 100%;
-            max-width: 900px;
-        }
-        .btn-primary {
-            width: 100%;
-            margin-top: 10px;
-        }
         .titulo-lista {
             margin-bottom: 20px;
             text-align: center;
+        }
+        .table {
+            background-color: #f8f9fa; /* Cor de fundo cinza */
+        }
+        .table th,
+        .table td {
+            border: 1px solid #ced4da; /* Borda fina cinza */
+            padding: 8px; /* Espaçamento interno */
         }
         .table .btn-group {
             display: flex;
@@ -37,19 +51,24 @@
         .table .btn:last-child {
             margin-right: 0;
         }
+        .btn-primary {
+            width: 100%; /* Largura total */
+            margin-top: 10px; /* Espaçamento superior */
+        }
     </style>
 </head>
 <body>
 
-    <header class="bg-primary text-white text-center py-4 mb-5">
-        <div class="container">
-            <h1 class="display-4">StarClinic</h1>
-        </div>
-    </header>
-
+<header class="bg-primary text-white text-center py-4 mb-5">
     <div class="container">
-        <div class="content-wrapper">
-            <h1 class="titulo-lista">Consultas</h1>
+        <h1 class="display-4">StarClinic</h1>
+    </div>
+</header>
+
+<div class="container">
+    <div class="content-wrapper">
+        <h1 class="titulo-lista">Consultas</h1>
+        <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover">
                 <thead class="table-primary">
                     <tr>
@@ -86,10 +105,11 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <a href="{{ url_for('cadastrar_consulta') }}" class="btn btn-primary">Cadastrar Nova Consulta</a>
         </div>
+        <a href="{{ url_for('cadastrar_consulta') }}" class="btn btn-primary">Cadastrar Nova Consulta</a>
     </div>
+</div>
 
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>

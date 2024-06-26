@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Recepcionista</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <style>
+        .form-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ced4da;
+            margin: auto;
+        }
+        .display-4 {
+            font-weight: 500;
+        }
         body, html {
             height: 100%;
         }
@@ -18,6 +31,12 @@
         .content-wrapper {
             width: 100%;
             max-width: 600px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ced4da;
+            margin-bottom: 20px;
         }
         .btn-primary {
             width: 100%;
@@ -27,41 +46,52 @@
             margin-bottom: 20px;
             text-align: center;
         }
+        .table-bordered {
+            border: 1px solid #ced4da;
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .table-bordered th, .table-bordered td {
+            border: 1px solid #ced4da;
+            padding: 8px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
 
-    <header class="bg-primary text-white text-center py-4 mb-5">
-        <div class="container">
-            <h1 class="display-4">StarClinic</h1>
-        </div>
-    </header>
-
+<header class="bg-primary text-white text-center py-4 mb-5">
     <div class="container">
-        <div class="content-wrapper">
-            <h1 class="titulo-recepcionista">Detalhes do Recepcionista</h1>
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <td>{{ recepcionista.id }}</td>
-                </tr>
-                <tr>
-                    <th>Nome</th>
-                    <td>{{ recepcionista.nome }}</td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td>{{ recepcionista.email }}</td>
-                </tr>
-                <tr>
-                    <th>Telefone</th>
-                    <td>{{ recepcionista.telefone }}</td>
-                </tr>
-            </table>
-            <a href="{{ url_for('ver_recepcionistas') }}" class="btn btn-primary">Voltar</a>
-        </div>
+        <h1 class="display-4">StarClinic</h1>
     </div>
+</header>
 
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
+<div class="container">
+    <div class="content-wrapper">
+        <h1 class="titulo-recepcionista">Detalhes do Recepcionista</h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>ID</th>
+                <td>{{ recepcionista.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ recepcionista.nome }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ recepcionista.email }}</td>
+            </tr>
+            <tr>
+                <th>Telefone</th>
+                <td>{{ recepcionista.telefone }}</td>
+            </tr>
+        </table>
+        <a href="{{ url_for('ver_recepcionistas') }}" class="btn btn-primary">Voltar</a>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

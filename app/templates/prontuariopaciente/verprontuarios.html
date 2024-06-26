@@ -1,44 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Prontuários de Pacientes</title>
+    <title>Prontuários de Pacientes</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        .form-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ced4da;
+            margin: auto;
+        }
+        .display-4 {
+            font-weight: 500;
+        }
+        body, html {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .content-wrapper {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ced4da;
+            margin: auto;
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .titulo-lista {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .table .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .table .btn {
+            margin-right: 5px;
+        }
+        .table .btn:last-child {
+            margin-right: 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">       
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
+
+<header class="bg-primary text-white text-center py-4 mb-5">
+    <div class="container">
+        <h1 class="display-4">StarClinic</h1>
+    </div>
+</header>
+
+<div class="container">
+    <div class="content-wrapper">
+        <h1 class="titulo-lista">Prontuários de Pacientes</h1>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-primary">
                 <tr>
                     <th>ID</th>
                     <th>Histórico</th>
                     <th>Whatsapp</th>
                     <th>Nome</th>
                     <th>Email</th>
-                    <th>Ações</th> <!-- Cabeçalho para as ações -->
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 {% for prontuario in prontuarios %}
-                    <tr>
-                        <td>{{ prontuario.id }}</td>
-                        <td>{{ prontuario.historico }}</td>
-                        <td>{{ prontuario.whatsapp }}</td>
-                        <td>{{ prontuario.nome }}</td>
-                        <td>{{ prontuario.email }}</td>
-                        <td>
+                <tr>
+                    <td>{{ prontuario.id }}</td>
+                    <td>{{ prontuario.historico }}</td>
+                    <td>{{ prontuario.whatsapp }}</td>
+                    <td>{{ prontuario.nome }}</td>
+                    <td>{{ prontuario.email }}</td>
+                    <td>
+                        <div class="btn-group">
                             <a href="{{ url_for('ver_um_prontuario', id=prontuario.id) }}" class="btn btn-info btn-sm">Ver</a>
-                            <a href="{{ url_for('editar_prontuario', id=prontuario.id) }}" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="{{ url_for('remover_prontuario', id=prontuario.id) }}" class="btn btn-danger btn-sm">Excluir</a>
-                        </td>
-                    </tr>
+                            <a href="{{ url_for('editar_prontuario', id=prontuario.id) }}" class="btn btn-warning btn-sm">Alterar</a>
+                            <a href="{{ url_for('remover_prontuario', id=prontuario.id) }}" class="btn btn-danger btn-sm">Remover</a>
+                        </div>
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{{ url_for('cadastrar_prontuario') }}" class="btn btn-primary">Cadastrar Prontuário</a>       
+        <a href="{{ url_for('cadastrar_prontuario') }}" class="btn btn-primary">Cadastrar Novo Prontuário</a>
     </div>
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</div>
+
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>

@@ -2,43 +2,103 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Planos de Saúde</title>
+    <title>Lista de Planos de Saúde</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        .content-wrapper {
+            max-width: 900px;
+            width: 100%;
+            padding: 20px;
+            background-color: #f8f9fa; /* Fundo branco para contraste */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave */
+            border: 1px solid #ced4da; /* Borda fina cinza */
+            margin: auto;
+            overflow-x: auto; /* Rola a tabela horizontalmente em telas menores */
+        }
+        .display-4 {
+            font-weight: 500;
+        }
+        body, html {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .titulo-lista {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .table {
+            background-color: #f8f9fa; /* Cor de fundo cinza */
+        }
+        .table th,
+        .table td {
+            border: 1px solid #ced4da; /* Borda fina cinza */
+            padding: 8px; /* Espaçamento interno */
+        }
+        .table .btn-group {
+            display: flex;
+            justify-content: flex-end; /* Alinha os botões à direita */
+        }
+        .table .btn {
+            margin-right: 5px;
+            width: auto; /* Largura automática */
+        }
+        .table .btn:last-child {
+            margin-right: 0;
+        }
+        .btn-primary {
+            width: 100%; /* Largura total */
+            margin-top: 10px; /* Espaçamento superior */
+        }
+    </style>
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-4 mb-5">
-        <div class="container">
-            <h1 class="display-4">StarClinic</h1>
-        </div>
-    </header>
-    <div class="container mt-5">
-        <h1 class="text-center">Lista de Planos de Saúde</h1>
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for plano in planos %}
+
+<header class="bg-primary text-white text-center py-4 mb-5">
+    <div class="container">
+        <h1 class="display-4">StarClinic</h1>
+    </div>
+</header>
+
+<div class="container">
+    <div class="content-wrapper">
+        <h1 class="titulo-lista">Lista de Planos de Saúde</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for plano in planos %}
                     <tr>
                         <td>{{ plano.id }}</td>
                         <td>{{ plano.nome }}</td>
-                        <td class="btn-group">
-                            <a href="{{ url_for('ver_um_plano', id=plano.id) }}" class="btn btn-info btn-sm">Ver</a>
-                            <a href="{{ url_for('editar_plano', id=plano.id) }}" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="{{ url_for('remover_plano', id=plano.id) }}" class="btn btn-danger btn-sm">Excluir</a>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{{ url_for('ver_um_plano', id=plano.id) }}" class="btn btn-info btn-sm">Ver</a>
+                                <a href="{{ url_for('editar_plano', id=plano.id) }}" class="btn btn-warning btn-sm">Alterar</a>
+                                <a href="{{ url_for('remover_plano', id=plano.id) }}" class="btn btn-danger btn-sm">Excluir</a>
+                            </div>
                         </td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
         <a href="{{ url_for('cadastrar_plano') }}" class="btn btn-primary">Cadastrar Plano de Saúde</a>
     </div>
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</div>
+
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>
