@@ -26,6 +26,7 @@ from .views import prontuariopaciente_view
 from .views import consulta_view
 from .views import log_view
 from .views import login_view
+from .views import site_view
 
 #NOTE: StarClinic
 

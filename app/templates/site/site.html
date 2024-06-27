@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Psiquiátrica</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='arquivo-site/pagina.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>StarClinic</h1>
+            <nav>
+                <ul>
+                    <li><a href="/sou_recepcionista">Área da Recepcionista</a></li>
+                    <li><a href="/sou_medico">Área do Médico</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="video-section">
+        <video autoplay muted loop id="bg-video">
+            <source src="video/starclinic.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Bem-vindo à Clínica Psiquiátrica</h2>
+            <p>Cuidando da sua saúde mental com carinho e profissionalismo.</p>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>Sobre Nós</h2>
+            <p>A StarClinic é uma startup criada pelo grupo de empreendedores do referido projeto integrador. Atenderá de forma geral qualquer clínica com o nosso sistema de saúde express.</p>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2>Serviços</h2>
+            <ul>
+                <li>Consultas Psiquiátricas</li>
+                <li>Terapia Individual</li>
+                <li>Terapia de Grupo</li>
+                <li>Acompanhamento Psicológico</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 StarClinic. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
