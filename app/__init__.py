@@ -28,6 +28,7 @@ from .views import log_view
 from .views import login_view
 from .views import site_view
 
+
 #NOTE: StarClinic
 
 from .models import recepcionista_model

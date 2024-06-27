@@ -12,8 +12,9 @@
             <h1>StarClinic</h1>
             <nav>
                 <ul>
-                    <li><a href="/sou_recepcionista">Área da Recepcionista</a></li>
-                    <li><a href="/sou_medico">Área do Médico</a></li>
+                    <li><a href="http://127.0.0.1:5000/entrar">Área da Recepcionista</a></li>
+                    <li><a href="{{ url_for('ver_consultas') }}">Área do Médico Consultas</a></li>
+                    <li><a href="{{ url_for('ver_prontuarios') }}">Área do Médico Prontuário</a></li>
                 </ul>
             </nav>
         </div>

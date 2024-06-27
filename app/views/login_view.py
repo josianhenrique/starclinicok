@@ -5,4 +5,3 @@ from app import db
 @app.route("/entrar", methods=["POST", "GET"])
 def abrir_index():
    return render_template("login/login.html")
-
