@@ -5,19 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica Psiquiátrica</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='arquivo-site/pagina.css') }}">
+    <style>
+     
+        .header-container nav ul {
+            padding: 0;
+            list-style-type: none;
+            display: flex; 
+            gap: 10px; 
+        }
+        .header-container nav ul li {
+            display: inline;
+            margin: 0;
+        }
+        .header-container nav ul li a {
+            padding: 10px; 
+            color: #333; 
+            text-decoration: none; 
+        }
+        .header-container img {
+            width: 100px; 
+            height: auto; 
+            margin-right: 10px; 
+        }
+        .header-container h1 {
+            margin: 0; 
+            font-size: 1.8rem; 
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="header-container">
-            <h1>StarClinic</h1>
+            <img src="{{ url_for('static', filename='imgs/logo-starclinic.png') }}" alt="StarClinic Logo">
+            <h1>StarClinic</h1> 
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('cadastrar_recepcionista') }}">Recepcionista</a></li>
-                    <li><a href="{{ url_for('cadastrar_plano') }}">Plano de Saúde</a></li>
-                    <li><a href="{{ url_for('cadastrar_especialidade') }}">Especialidades</a></li>
-                    <li><a href="{{ url_for('cadastrar_medico') }}">Médico</a></li>
-                    <li><a href="{{ url_for('cadastrar_prontuario') }}">Prontuário do Paciente</a></li>
-                    <li><a href="{{ url_for('cadastrar_consulta') }}">Consulta</a></li>
+                    <li class="nav-item"><a href="{{ url_for('cadastrar_recepcionista') }}">Recepcionista</a></li>
+                    <li class="nav-item"><a href="{{ url_for('cadastrar_plano') }}">Plano de Saúde</a></li>
+                    <li class="nav-item"><a href="{{ url_for('cadastrar_especialidade') }}">Especialidades</a></li>
+                    <li class="nav-item"><a href="{{ url_for('cadastrar_medico') }}">Médico</a></li>
+                    <li class="nav-item"><a href="{{ url_for('cadastrar_prontuario') }}">Prontuário do Paciente</a></li>
+                    <li class="nav-item"><a href="{{ url_for('cadastrar_consulta') }}">Consulta</a></li>
                 </ul>
             </nav>
         </div>

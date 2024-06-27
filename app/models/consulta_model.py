@@ -1,4 +1,4 @@
-# app/models/consulta_model.py
+
 from sqlalchemy import Time, DateTime
 from app import db
 from sqlalchemy.orm import relationship

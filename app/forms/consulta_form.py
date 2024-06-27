@@ -1,4 +1,4 @@
-# app/forms/consulta_form.py
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, FloatField, DateField, TimeField, SubmitField
 from wtforms.validators import DataRequired

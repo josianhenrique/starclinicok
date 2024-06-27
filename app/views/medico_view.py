@@ -7,7 +7,7 @@ from app.models.especialidade_model import Especialidade
 @app.route("/cadmedico", methods=["GET", "POST"])
 def cadastrar_medico():
     form = MedicoForm()
-    form.populate_especialidades()  # Popula as especialidades antes de validar o formulário
+    form.populate_especialidades()
 
     if form.validate_on_submit():
         nome = form.nome.data
