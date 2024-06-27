@@ -20,66 +20,90 @@
         .display-4 {
             font-weight: 500;
         }
+        body, html {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .col-md-8 {
+            margin: auto;
+        }
+        .titulo-cadastro {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-voltar {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-4 mb-5">
-        <div class="container">
-            <h1 class="display-4">StarClinic</h1>
-        </div>
-    </header>
+<header class="bg-primary text-white text-center py-4 mb-5">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8">
-                <div class="form-container">
-                    <h1 class="text-center">{% if editar %}Editar Médico{% else %}Cadastrar Médico{% endif %}</h1>
-                    <form method="POST" action="{% if editar %}{{ url_for('editar_medico', id=medico_editar.id) }}{% else %}{{ url_for('cadastrar_medico') }}{% endif %}">
-                        {{ form.hidden_tag() }}
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">{{ form.nome.label }}</label>
-                            {{ form.nome(class="form-control", id="nome") }}
-                            {% for error in form.nome.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="mb-3">
-                            <label for="telefone" class="form-label">{{ form.telefone.label }}</label>
-                            {{ form.telefone(class="form-control", id="telefone") }}
-                            {% for error in form.telefone.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="mb-3">
-                            <label for="cpf" class="form-label">{{ form.cpf.label }}</label>
-                            {{ form.cpf(class="form-control", id="cpf") }}
-                            {% for error in form.cpf.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="mb-3">
-                            <label for="crm" class="form-label">{{ form.crm.label }}</label>
-                            {{ form.crm(class="form-control", id="crm") }}
-                            {% for error in form.crm.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="mb-3">
-                            <label for="especialidade_id" class="form-label">{{ form.especialidade_id.label }}</label>
-                            <select id="especialidade_id" name="especialidade_id" class="form-control">
-                                {% for id, nome in form.especialidade_id.choices %}
-                                    <option value="{{ id }}" {% if id == form.especialidade_id.data %}selected{% endif %}>{{ nome }}</option>
-                                {% endfor %}
-                            </select>
-                            {% for error in form.especialidade_id.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
-                    </form>
+        <h1 class="display-4">StarClinic</h1>
+    </div>
+</header>
+<div class="container">
+    <div class="col-md-8">
+        <h1 class="titulo-cadastro">{% if editar %}Editar Médico{% else %}Cadastrar Médico{% endif %}</h1>
+        <div class="form-container">
+            <form method="POST" action="{% if editar %}{{ url_for('editar_medico', id=medico_editar.id) }}{% else %}{{ url_for('cadastrar_medico') }}{% endif %}">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    <label for="nome" class="form-label">{{ form.nome.label }}</label>
+                    {{ form.nome(class="form-control", id="nome") }}
+                    {% for error in form.nome.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="telefone" class="form-label">{{ form.telefone.label }}</label>
+                    {{ form.telefone(class="form-control", id="telefone") }}
+                    {% for error in form.telefone.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="cpf" class="form-label">{{ form.cpf.label }}</label>
+                    {{ form.cpf(class="form-control", id="cpf") }}
+                    {% for error in form.cpf.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="crm" class="form-label">{{ form.crm.label }}</label>
+                    {{ form.crm(class="form-control", id="crm") }}
+                    {% for error in form.crm.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="especialidade_id" class="form-label">{{ form.especialidade_id.label }}</label>
+                    <select id="especialidade_id" name="especialidade_id" class="form-control">
+                        {% for id, nome in form.especialidade_id.choices %}
+                            <option value="{{ id }}" {% if id == form.especialidade_id.data %}selected{% endif %}>{{ nome }}</option>
+                        {% endfor %}
+                    </select>
+                    {% for error in form.especialidade_id.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
+                {% if not editar %}
+                <a href="{{ url_for('site') }}" class="btn btn-success btn-voltar w-100 mt-3">Voltar para a Tela Principal</a>
+                {% endif %}
+            </form>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</div>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

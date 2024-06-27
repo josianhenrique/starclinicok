@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if editar %}Editar Consulta{% else %}Cadastrar Consulta{% endif %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
@@ -28,98 +29,91 @@
             justify-content: center;
             height: 100%;
         }
-        .form-wrapper {
-            width: 100%;
-            max-width: 800px; /* Adjusted max-width for better responsiveness */
-            padding: 20px; /* Added padding for better spacing */
-            background-color: #fff; /* Added white background for better contrast */
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border: 1px solid #ced4da;
+        .col-md-8 {
+            margin: auto;
         }
-        .form-group {
-            margin-bottom: 20px; /* Increased bottom margin for spacing */
-        }
-        .form-control {
-            width: 100%;
+        .titulo-cadastro {
+            text-align: center;
+            margin-bottom: 20px;
         }
         .btn-primary {
             width: 100%;
             margin-top: 10px;
         }
-        .titulo-cadastro {
-            margin-bottom: 20px;
-            text-align: center;
+        .btn-voltar {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
 <header class="bg-primary text-white text-center py-4 mb-5">
     <div class="container">
         <h1 class="display-4">StarClinic</h1>
     </div>
 </header>
-
 <div class="container">
-    <div class="form-container">
+    <div class="col-md-8">
         <h1 class="titulo-cadastro">{% if editar %}Editar Consulta{% else %}Cadastrar Consulta{% endif %}</h1>
-        <form method="POST" action="{% if editar %}{{ url_for('editar_consulta', id=consulta_editar.id) }}{% else %}{{ url_for('cadastrar_consulta') }}{% endif %}">
-            {{ form.hidden_tag() }}
-            <div class="mb-3">
-                <label for="valor" class="form-label">{{ form.valor.label }}</label>
-                {{ form.valor(class="form-control", id="valor") }}
-                {% for error in form.valor.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="mb-3">
-                <label for="data" class="form-label">{{ form.data.label }}</label>
-                {{ form.data(class="form-control", id="data") }}
-                {% for error in form.data.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="mb-3">
-                <label for="horario" class="form-label">{{ form.horario.label }}</label>
-                {{ form.horario(class="form-control", id="horario") }}
-                {% for error in form.horario.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="mb-3">
-                <label for="fk_recepcionista_id" class="form-label">{{ form.fk_recepcionista_id.label }}</label>
-                {{ form.fk_recepcionista_id(class="form-control", id="fk_recepcionista_id") }}
-                {% for error in form.fk_recepcionista_id.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="mb-3">
-                <label for="fk_medico_id" class="form-label">{{ form.fk_medico_id.label }}</label>
-                {{ form.fk_medico_id(class="form-control", id="fk_medico_id") }}
-                {% for error in form.fk_medico_id.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="mb-3">
-                <label for="fk_prontuario_paciente" class="form-label">{{ form.fk_prontuario_paciente.label }}</label>
-                {{ form.fk_prontuario_paciente(class="form-control", id="fk_prontuario_paciente") }}
-                {% for error in form.fk_prontuario_paciente.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="mb-3">
-                <label for="fk_plano_de_saude_id" class="form-label">{{ form.fk_plano_de_saude_id.label }}</label>
-                {{ form.fk_plano_de_saude_id(class="form-control", id="fk_plano_de_saude_id") }}
-                {% for error in form.fk_plano_de_saude_id.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <button type="submit" class="btn btn-primary">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
-        </form>
+        <div class="form-container">
+            <form method="POST" action="{% if editar %}{{ url_for('editar_consulta', id=consulta_editar.id) }}{% else %}{{ url_for('cadastrar_consulta') }}{% endif %}">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    <label for="valor" class="form-label">{{ form.valor.label }}</label>
+                    {{ form.valor(class="form-control", id="valor") }}
+                    {% for error in form.valor.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="data" class="form-label">{{ form.data.label }}</label>
+                    {{ form.data(class="form-control", id="data") }}
+                    {% for error in form.data.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="horario" class="form-label">{{ form.horario.label }}</label>
+                    {{ form.horario(class="form-control", id="horario") }}
+                    {% for error in form.horario.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="fk_recepcionista_id" class="form-label">{{ form.fk_recepcionista_id.label }}</label>
+                    {{ form.fk_recepcionista_id(class="form-control", id="fk_recepcionista_id") }}
+                    {% for error in form.fk_recepcionista_id.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="fk_medico_id" class="form-label">{{ form.fk_medico_id.label }}</label>
+                    {{ form.fk_medico_id(class="form-control", id="fk_medico_id") }}
+                    {% for error in form.fk_medico_id.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="fk_prontuario_paciente" class="form-label">{{ form.fk_prontuario_paciente.label }}</label>
+                    {{ form.fk_prontuario_paciente(class="form-control", id="fk_prontuario_paciente") }}
+                    {% for error in form.fk_prontuario_paciente.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="fk_plano_de_saude_id" class="form-label">{{ form.fk_plano_de_saude_id.label }}</label>
+                    {{ form.fk_plano_de_saude_id(class="form-control", id="fk_plano_de_saude_id") }}
+                    {% for error in form.fk_plano_de_saude_id.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
+                {% if not editar %}
+                <a href="{{ url_for('site') }}" class="btn btn-success btn-voltar w-100 mt-3">Voltar para a Tela Principal</a>
+                {% endif %}
+            </form>
+        </div>
     </div>
 </div>
-
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>

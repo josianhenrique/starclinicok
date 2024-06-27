@@ -20,55 +20,79 @@
         .display-4 {
             font-weight: 500;
         }
+        body, html {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .col-md-8 {
+            margin: auto;
+        }
+        .titulo-cadastro {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-voltar {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-4 mb-5">
-        <div class="container">
-            <h1 class="display-4">StarClinic</h1>
-        </div>
-    </header>
+<header class="bg-primary text-white text-center py-4 mb-5">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8">
-                <div class="form-container">
-                    <h1 class="text-center">{% if editar %}Editar Recepcionista{% else %}Cadastrar Recepcionista{% endif %}</h1>
-                    <form method="POST" action="{% if editar %}{{ url_for('editar_recepcionista', id=recepcionista.id) }}{% else %}{{ url_for('cadastrar_recepcionista') }}{% endif %}">
-                        {{ form.hidden_tag() }}
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">{{ form.nome.label }}</label>
-                            {{ form.nome(class="form-control", id="nome") }}
-                            {% for error in form.nome.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">{{ form.email.label }}</label>
-                            {{ form.email(class="form-control", id="email") }}
-                            {% for error in form.email.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="mb-3">
-                            <label for="telefone" class="form-label">{{ form.telefone.label }}</label>
-                            {{ form.telefone(class="form-control", id="telefone") }}
-                            {% for error in form.telefone.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="mb-3">
-                            <label for="senha" class="form-label">{{ form.senha.label }}</label>
-                            {{ form.senha(class="form-control", id="senha") }}
-                            {% for error in form.senha.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
-                    </form>
+        <h1 class="display-4">StarClinic</h1>
+    </div>
+</header>
+<div class="container">
+    <div class="col-md-8">
+        <h1 class="titulo-cadastro">{% if editar %}Editar Recepcionista{% else %}Cadastrar Recepcionista{% endif %}</h1>
+        <div class="form-container">
+            <form method="POST" action="{% if editar %}{{ url_for('editar_recepcionista', id=recepcionista.id) }}{% else %}{{ url_for('cadastrar_recepcionista') }}{% endif %}">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    <label for="nome" class="form-label">{{ form.nome.label }}</label>
+                    {{ form.nome(class="form-control", id="nome") }}
+                    {% for error in form.nome.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">{{ form.email.label }}</label>
+                    {{ form.email(class="form-control", id="email") }}
+                    {% for error in form.email.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="telefone" class="form-label">{{ form.telefone.label }}</label>
+                    {{ form.telefone(class="form-control", id="telefone") }}
+                    {% for error in form.telefone.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="senha" class="form-label">{{ form.senha.label }}</label>
+                    {{ form.senha(class="form-control", id="senha") }}
+                    {% for error in form.senha.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">{{ 'Atualizar' if editar else 'Cadastrar' }}</button>
+                {% if not editar %}
+                <a href="{{ url_for('site') }}" class="btn btn-success btn-voltar w-100 mt-3">Voltar para a Tela Principal</a>
+                {% endif %}
+            </form>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</div>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

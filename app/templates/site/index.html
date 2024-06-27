@@ -12,9 +12,12 @@
             <h1>StarClinic</h1>
             <nav>
                 <ul>
-                    <li><a href="http://127.0.0.1:5000/entrar">Área da Recepcionista</a></li>
-                    <li><a href="{{ url_for('ver_consultas') }}">Área do Médico Consultas</a></li>
-                    <li><a href="{{ url_for('ver_prontuarios') }}">Área do Médico Prontuário</a></li>
+                    <li><a href="{{ url_for('cadastrar_recepcionista') }}">Recepcionista</a></li>
+                    <li><a href="{{ url_for('cadastrar_plano') }}">Plano de Saúde</a></li>
+                    <li><a href="{{ url_for('cadastrar_especialidade') }}">Especialidades</a></li>
+                    <li><a href="{{ url_for('cadastrar_medico') }}">Médico</a></li>
+                    <li><a href="{{ url_for('cadastrar_prontuario') }}">Prontuário do Paciente</a></li>
+                    <li><a href="{{ url_for('cadastrar_consulta') }}">Consulta</a></li>
                 </ul>
             </nav>
         </div>
@@ -56,7 +59,5 @@
             <p>&copy; 2024 StarClinic. Todos os direitos reservados.</p>
         </div>
     </footer>
-
-    <script src="scripts.js"></script>
 </body>
 </html>

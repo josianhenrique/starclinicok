@@ -29,19 +29,28 @@
             justify-content: center;
             height: 100%;
         }
+        .titulo-cadastro {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-voltar {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-
 <header class="bg-primary text-white text-center py-4 mb-5">
     <div class="container">
         <h1 class="display-4">StarClinic</h1>
     </div>
 </header>
-
 <div class="container">
     <div class="form-container">
-        <h1 class="text-center">{{ 'Editar Prontuário de Paciente' if editar else 'Cadastrar Prontuário de Paciente' }}</h1>
+        <h1 class="titulo-cadastro">{{ 'Editar Prontuário de Paciente' if editar else 'Cadastrar Prontuário de Paciente' }}</h1>
         <form method="POST" action="{% if editar %}{{ url_for('editar_prontuario', id=prontuario_editar.id) }}{% else %}{{ url_for('cadastrar_prontuario') }}{% endif %}">
             {{ form.hidden_tag() }}
             <div class="mb-3">
@@ -83,9 +92,11 @@
                 </div>
             {% endif %}
         {% endwith %}
+        {% if not editar %}
+        <a href="{{ url_for('site') }}" class="btn btn-success btn-voltar w-100 mt-3">Voltar para a Tela Principal</a>
+        {% endif %}
     </div>
 </div>
-
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
