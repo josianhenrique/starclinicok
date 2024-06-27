@@ -21,7 +21,7 @@
 
     <section id="home" class="video-section">
         <video autoplay muted loop id="bg-video">
-            <source src="video/starclinic.mp4" type="video/mp4">
+            <source src="{{ url_for('static', filename='video/starclinic.mp4') }}" type="video/mp4">
             Seu navegador não suporta a tag de vídeo.
         </video>
         <div class="overlay"></div>

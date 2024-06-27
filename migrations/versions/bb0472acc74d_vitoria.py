@@ -1,8 +1,8 @@
 """vitoria
 
-Revision ID: 4d7a1b95a6ca
+Revision ID: bb0472acc74d
 Revises: 
-Create Date: 2024-06-26 19:19:13.983703
+Create Date: 2024-06-27 02:50:17.417085
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '4d7a1b95a6ca'
+revision = 'bb0472acc74d'
 down_revision = None
 branch_labels = None
 depends_on = None
